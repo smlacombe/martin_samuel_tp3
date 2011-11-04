@@ -2,12 +2,21 @@ package ets.log120.tp3;
 
 public class CouleurCarte
 	implements Comparable<CouleurCarte> {
+	
+	// --------------------------------------------------
+	// Constante(s) publique(s)
+	// --------------------------------------------------
+	
+	public static final CouleurCarte TREFLE  = new CouleurCarte("trèfle");
+    public static final CouleurCarte CARREAU = new CouleurCarte("carreau");
+    public static final CouleurCarte PIQUE   = new CouleurCarte("pique");
+    public static final CouleurCarte COEUR   = new CouleurCarte("coeur");
 
 	// --------------------------------------------------
 	// Constructeur(s)
 	// --------------------------------------------------
 
-	public CouleurCarte(String nom) {
+	private CouleurCarte(String nom) {
 		this.nom = nom;
 	}
 
@@ -21,7 +30,10 @@ public class CouleurCarte
 
 	@Override
 	public int compareTo(CouleurCarte obj) {
-		return 1;
+		if (obj == null)
+			throw new NullPointerException();
+		
+		return getNom().compareTo(obj.getNom());
 	}
 
 	@Override
