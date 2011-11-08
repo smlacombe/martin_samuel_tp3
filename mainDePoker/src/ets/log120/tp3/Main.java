@@ -1,7 +1,9 @@
 package ets.log120.tp3;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Iterator;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 public class Main
@@ -31,7 +33,12 @@ public class Main
 
 	@Override
 	public boolean equals(Object obj) {
-		return false;
+		if (obj == null)
+			return false;
+		else if (!(obj instanceof Carte))
+			return false;
+		else
+			return listeCartes.equals(((Main) obj).listeCartes);	
 	}
 
 	public Iterator<Carte> iterator() {
