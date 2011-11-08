@@ -8,7 +8,7 @@ public class Carte
 	// --------------------------------------------------
 
 	public Carte() {
-		
+		assert false : "TODO : Implement this function.";
 	}
 	
 	// --------------------------------------------------
@@ -28,9 +28,9 @@ public class Carte
 		return "Carte [couleur=" + couleur + ", denomination=" + denomination + "]";
 	}
 	
-
 	@Override
 	public int compareTo(Carte obj) {
+		assert false : "TODO : Implement this function.";
 		return 0;
 	}
 	

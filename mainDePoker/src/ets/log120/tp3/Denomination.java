@@ -3,11 +3,14 @@ package ets.log120.tp3;
 public class Denomination
 	implements Comparable<Denomination> {
 
+	public static final Denomination AS    = new Denomination("AS",    'A');
+	public static final Denomination JOKER = new Denomination("JOKER", 'J');
+
 	// --------------------------------------------------
 	// Constructeur(s)
 	// --------------------------------------------------
 
-	public Denomination(String nom, char caractere) {
+	private Denomination(String nom, char caractere) {
 		this.nom = nom;
 		this.caractere = caractere;
 	}
@@ -26,6 +29,7 @@ public class Denomination
 
 	@Override
 	public int compareTo(Denomination obj) {
+		assert false : "TODO : Implement this function.";
 		return 1;
 	}
 

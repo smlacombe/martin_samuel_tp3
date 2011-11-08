@@ -3,10 +3,6 @@ package ets.log120.tp3;
 public class CouleurCarte
 	implements Comparable<CouleurCarte> {
 	
-	// --------------------------------------------------
-	// Constante(s) publique(s)
-	// --------------------------------------------------
-	
 	public static final CouleurCarte TREFLE  = new CouleurCarte("trèfle");
     public static final CouleurCarte CARREAU = new CouleurCarte("carreau");
     public static final CouleurCarte PIQUE   = new CouleurCarte("pique");
