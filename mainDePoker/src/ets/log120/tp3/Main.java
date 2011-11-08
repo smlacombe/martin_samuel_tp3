@@ -1,77 +1,79 @@
 package ets.log120.tp3;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Collection;
 import java.util.Iterator;
+import java.util.TreeSet;
 
-public class Main implements Comparable {
+public class Main
+	implements Comparable<Main>, Iterable<Carte> {
 
 	// --------------------------------------------------
 	// Constructeur(s)
 	// --------------------------------------------------
 
 	public Main() {
-		
+		listeCartes = new TreeSet<Carte>();
 	}
-	
+
 	// --------------------------------------------------
 	// Accesseur(s)
 	// --------------------------------------------------
-		
-	//Retourne le nombre de cartes dans la main
+
+	// Retourne le nombre de cartes dans la main
 	public int size() {
 		return listeCartes.size();
 	}
-	
-	//Retourne le rang de la main courante
+
+	// Retourne le rang de la main courante
 	public RangPoker getRangPoker() {
 		return new RangPoker();
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		return false;
 	}
-	
-	public Iterator iterator() {
+
+	public Iterator<Carte> iterator() {
 		return listeCartes.iterator();
 	}
-	
-	//Retourne la première carte de la main
-	public void first() {
-		assert false : "TODO: implémenter cette fonction";
+
+	// Retourne la première carte de la main
+	public Carte first() {
+		return listeCartes.first();
 	}
-	
-	public ArrayList getCartes() {
+
+	public Collection<Carte> getCartes() {
 		return listeCartes;
 	}
 	
+	//Qu'est-ce qu'une main valide?
 	public boolean estValide() {
-		assert false;
-		//Todo: implémenter cette fonction
+		assert false : "TODO: implémenter cette fonction";
 		return false;
 	}
-	
+
 	@Override
-	public int compareTo(Object arg0) {
+	public int compareTo(Main obj) {
 		assert false : "TODO: implémenter cette fonction";
 		return 0;
 	}
+
 	// --------------------------------------------------
 	// Mutateur(s)
 	// --------------------------------------------------
-	
-	public void remove() {
-		assert false : "TODO: implémenter cette fonction";
+
+	public boolean remove(Carte c) {
+		return listeCartes.remove(c);
 	}
-	
-	public void add() {
-		assert false : "TODO: implémenter cette fonction";
+
+	public boolean add(Carte c) {
+		return listeCartes.add(c);
 	}
-	
 
 	// --------------------------------------------------
 	// Attribut(s)
 	// --------------------------------------------------
-	private ArrayList<Carte> listeCartes;
+	
+	private TreeSet<Carte> listeCartes;
 }
