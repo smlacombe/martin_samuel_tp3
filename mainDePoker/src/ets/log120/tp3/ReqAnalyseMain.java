@@ -7,7 +7,6 @@ public class ReqAnalyseMain {
 	// --------------------------------------------------
 	
 	public ReqAnalyseMain(Main main) {
-		assert false : "TODO : Implement this function.";
 		this.main = main;
 	}
 	
@@ -19,16 +18,16 @@ public class ReqAnalyseMain {
 		return main;
 	}
 	
-	public void getRangReconnu() {
-		assert false : "TODO : Implement this function.";
+	public RangPoker getRangReconnu() {
+		return rang;
 	}
 	
 	// --------------------------------------------------
 	// Mutateur(s)
 	// --------------------------------------------------
 	
-	public void setRangReconnu() {
-		assert false : "TODO : Implement this function.";
+	public void setRangReconnu(RangPoker rang) {
+		this.rang = rang;
 	}
 	
 	// --------------------------------------------------
@@ -40,4 +39,5 @@ public class ReqAnalyseMain {
 	// --------------------------------------------------
 	
 	private Main main;
+	private RangPoker rang;
 }
