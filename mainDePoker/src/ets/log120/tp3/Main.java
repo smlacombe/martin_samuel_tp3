@@ -28,7 +28,8 @@ public class Main
 
 	// Retourne le rang de la main courante
 	public RangPoker getRangPoker() {
-		return new RangPoker();
+		assert false : "Pas implémenter";
+		return null;
 	}
 
 	@Override
@@ -54,10 +55,10 @@ public class Main
 		return listeCartes;
 	}
 	
-	//Qu'est-ce qu'une main valide?
+	//Retourne si la main est valide
+	//Une main valide est toute main ayant au moins une carte
 	public boolean estValide() {
-		assert false : "TODO: implémenter cette fonction";
-		return false;
+		return listeCartes.size() != 0;
 	}
 
 	@Override
