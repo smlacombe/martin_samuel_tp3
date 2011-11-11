@@ -48,7 +48,15 @@ public class Denomination
 		if (obj == null)
 			throw new NullPointerException();
 
-		return DÉNOMINATIONS.indexOf(this) - DÉNOMINATIONS.indexOf(obj);
+		return DENOMINATIONS.indexOf(this) - DENOMINATIONS.indexOf(obj);
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Denomination)
+			return compareTo((Denomination) obj) == 0;
+		else
+			return false;
 	}
 
 	@Override
@@ -60,7 +68,7 @@ public class Denomination
 	// Attribut(s)
 	// --------------------------------------------------
 
-	public static final List<Denomination> DÉNOMINATIONS = Collections.unmodifiableList(Arrays.asList(
+	public static final List<Denomination> DENOMINATIONS = Collections.unmodifiableList(Arrays.asList(
 		new Denomination[] { DEUX, TROIS, QUATRE, CINQ, SIX, SEPT, HUIT, NEUF, DIX, VALET, DAME, ROI, AS }));
 	
 	private String nom;
