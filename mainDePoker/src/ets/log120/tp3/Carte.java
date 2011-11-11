@@ -88,6 +88,6 @@ public class Carte
 	// Attribut(s)
 	// --------------------------------------------------
 	
-	CouleurCarte couleur;
-	Denomination denomination;
+	private CouleurCarte couleur;
+	private Denomination denomination;
 }
