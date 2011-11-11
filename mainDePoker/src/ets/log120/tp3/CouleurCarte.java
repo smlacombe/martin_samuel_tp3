@@ -1,5 +1,9 @@
 package ets.log120.tp3;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public class CouleurCarte
 	implements Comparable<CouleurCarte> {
 	
@@ -29,7 +33,7 @@ public class CouleurCarte
 		if (obj == null)
 			throw new NullPointerException();
 		
-		return getNom().compareTo(obj.getNom());
+		return COULEURS.indexOf(this) - COULEURS.indexOf(obj);
 	}
 
 	@Override
@@ -41,5 +45,8 @@ public class CouleurCarte
 	// Attribut(s)
 	// --------------------------------------------------
 
+	public static final List<CouleurCarte> COULEURS = Collections.unmodifiableList(Arrays.asList(
+		new CouleurCarte[] { TREFLE, CARREAU, PIQUE, COEUR }));
+	
 	String nom;
 }

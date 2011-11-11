@@ -6,16 +6,17 @@ public class ReqAnalyseMain {
 	// Constructeur(s)
 	// --------------------------------------------------
 	
-	public ReqAnalyseMain() {
+	public ReqAnalyseMain(Main main) {
 		assert false : "TODO : Implement this function.";
+		this.main = main;
 	}
 	
 	// --------------------------------------------------
 	// Accesseur(s)
 	// --------------------------------------------------
 	
-	public void getMain() {
-		assert false : "TODO : Implement this function.";
+	public Main getMain() {
+		return main;
 	}
 	
 	public void getRangReconnu() {
@@ -38,4 +39,5 @@ public class ReqAnalyseMain {
 	// Attribut(s)
 	// --------------------------------------------------
 	
+	private Main main;
 }

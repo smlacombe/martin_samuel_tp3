@@ -7,8 +7,9 @@ public class Carte
 	// Constructeur(s)
 	// --------------------------------------------------
 
-	public Carte() {
-		assert false : "TODO : Implement this function.";
+	public Carte(Denomination d, CouleurCarte c) {
+		this.denomination = d;
+		this.couleur = c;
 	}
 	
 	// --------------------------------------------------
@@ -30,8 +31,21 @@ public class Carte
 	
 	@Override
 	public int compareTo(Carte obj) {
-		assert false : "TODO : Implement this function.";
-		return 0;
+		if(obj == null)
+				throw new NullPointerException();
+		
+		if (getDenomination().compareTo(obj.getDenomination()) > 0)
+			return 1;
+		else if (getDenomination().compareTo(obj.getDenomination()) < 0)
+			return -1;
+		else {
+			if (getCouleur().compareTo(obj.getCouleur()) > 0)
+				return 1;
+			else if (getCouleur().compareTo(obj.getCouleur()) < 0)
+				return -1;
+			else
+				return 0;
+		}
 	}
 	
 	@Override

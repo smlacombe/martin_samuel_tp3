@@ -4,9 +4,9 @@ public class QuinteRoyale extends AbstractAnalyseurRang {
 
 	@Override
 	protected boolean reconnaitreMain(ReqAnalyseMain contexte) {
-		CouleurCarte couleur;
-		Denomination derniereDenomination;
-		for(Carte carte : context.getMain()) {
+		CouleurCarte couleur = null;
+		Denomination derniereDenomination = null;
+		for(Carte carte : contexte.getMain()) {
 			if (couleur == null)
 				couleur = carte.getCouleur();
 			else if (!carte.getCouleur().equals(couleur))
