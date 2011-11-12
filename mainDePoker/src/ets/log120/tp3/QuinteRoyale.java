@@ -1,7 +1,14 @@
 package ets.log120.tp3;
 
+/**
+ * Classe chargée de reconnaître une quinte royale.
+ * 
+ * Une quinte royale est une quinte couleur dont la carte la plus haute est l'as.
+ * 
+ * @author Martin Desharnais
+ * @see ets.log120.tp3.QuinteCouleur
+ */
 public class QuinteRoyale extends AbstractAnalyseurRang {
-
 	@Override
 	protected boolean reconnaitreMain(ReqAnalyseMain contexte) {
 		CouleurCarte couleur = null;
@@ -18,14 +25,13 @@ public class QuinteRoyale extends AbstractAnalyseurRang {
 				else
 					return false;
 			} else {
-				assert valeursDenominations != null;
-				int valeurPrecedante = valeursDenominations.get(derniereDenomination);
-				int valeurCourante   = valeursDenominations.get(carte.getDenomination());
-				if (!(valeurPrecedante == valeurCourante - 1))
+				int precedant = Denomination.DENOMINATIONS.indexOf(derniereDenomination);
+				int courant   = Denomination.DENOMINATIONS.indexOf(carte.getDenomination());
+				if (precedant != courant - 1)
 					return false;
 			}
 		}
+		contexte.setRangReconnu(new RangPoker(12));
 		return true;
 	}
-
 }
