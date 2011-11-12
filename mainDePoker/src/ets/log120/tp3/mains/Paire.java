@@ -24,7 +24,7 @@ public class Paire extends AbstractAnalyseurRang {
 		
 		for(Carte carte1 : main) {
 			Integer compteur = nbDenominations.get(carte1.getDenomination());
-			nbDenominations.put(carte1.getDenomination(), (compteur == null) ? 0 : compteur+1);	
+			nbDenominations.put(carte1.getDenomination(), (compteur == null) ? 1 : compteur+1);	
 		}
 		
 		for (Iterator<Integer> i = nbDenominations.values().iterator() ; i.hasNext();)
