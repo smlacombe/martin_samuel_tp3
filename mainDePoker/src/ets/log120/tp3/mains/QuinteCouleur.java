@@ -1,8 +1,5 @@
 package ets.log120.tp3.mains;
 
-import ets.log120.tp3.cartes.Carte;
-import ets.log120.tp3.cartes.CouleurCarte;
-
 /**
  * Classe chargée de reconnaître une quinte couleur.
  * 
@@ -18,13 +15,9 @@ public class QuinteCouleur extends AbstractAnalyseurRang {
 		if (!quinte.reconnaitreMain(contexte))
 			return false;
 		
-		CouleurCarte couleur = null;
-		for(Carte carte : contexte.getMain()) {
-			if (couleur == null)
-				couleur = carte.getCouleur();
-			else if (!carte.getCouleur().equals(couleur))
-				return false;
-		}
+		Couleur couleur = new Couleur();
+		if (!couleur.reconnaitreMain(contexte))
+			return false;
 		
 		contexte.setRangReconnu(new RangPoker(9));
 		return true;
