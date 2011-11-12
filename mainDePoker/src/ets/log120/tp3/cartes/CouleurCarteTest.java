@@ -5,7 +5,7 @@
  * http://6170.lcs.mit.edu/www-archive/Old-2002-Fall/psets/ps2/ps2.html
  * 
  */
-package ets.log120.tp3;
+package ets.log120.tp3.cartes;
 
 import junit.framework.Assert;
 import junit.framework.Test;

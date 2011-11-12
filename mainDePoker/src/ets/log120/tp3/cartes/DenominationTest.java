@@ -6,7 +6,7 @@
  * 
  */
 
-package ets.log120.tp3;
+package ets.log120.tp3.cartes;
 
 import junit.framework.Assert;
 import junit.framework.Test;

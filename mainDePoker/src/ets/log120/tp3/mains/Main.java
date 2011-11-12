@@ -1,10 +1,12 @@
-package ets.log120.tp3;
+package ets.log120.tp3.mains;
 
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.TreeMap;
 import java.util.TreeSet;
+
+import ets.log120.tp3.cartes.Carte;
 
 public class Main
 	implements Comparable<Main>, Iterable<Carte> {

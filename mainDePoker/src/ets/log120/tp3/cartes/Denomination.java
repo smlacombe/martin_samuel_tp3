@@ -1,4 +1,4 @@
-package ets.log120.tp3;
+package ets.log120.tp3.cartes;
 
 import java.util.Arrays;
 import java.util.Collections;

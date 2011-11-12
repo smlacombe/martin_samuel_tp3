@@ -9,7 +9,7 @@
 // cpf 2005-11-09 Mise à jour pour les types "generics" dans Java 1.5
 
 
-package ets.log120.tp3;
+package ets.log120.tp3.cartes;
 
 import junit.framework.*;
 

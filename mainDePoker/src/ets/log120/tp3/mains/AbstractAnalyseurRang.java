@@ -1,6 +1,8 @@
-package ets.log120.tp3;
+package ets.log120.tp3.mains;
 
 import java.util.TreeMap;
+
+import ets.log120.tp3.cartes.Denomination;
 
 public abstract class AbstractAnalyseurRang {
 	

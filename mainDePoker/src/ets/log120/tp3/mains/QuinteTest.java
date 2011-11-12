@@ -1,5 +1,8 @@
-package ets.log120.tp3;
+package ets.log120.tp3.mains;
 
+import ets.log120.tp3.cartes.Carte;
+import ets.log120.tp3.cartes.CouleurCarte;
+import ets.log120.tp3.cartes.Denomination;
 import junit.framework.TestCase;
 
 public class QuinteTest extends TestCase {

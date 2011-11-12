@@ -1,4 +1,7 @@
-package ets.log120.tp3;
+package ets.log120.tp3.mains;
+
+import ets.log120.tp3.cartes.Carte;
+import ets.log120.tp3.cartes.CouleurCarte;
 
 /**
  * Classe chargée de reconnaître une quinte couleur.

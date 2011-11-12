@@ -1,4 +1,4 @@
-package ets.log120.tp3;
+package ets.log120.tp3.mains;
 
 public class RangPoker
 	implements Comparable<RangPoker>{
