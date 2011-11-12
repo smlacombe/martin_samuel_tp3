@@ -50,13 +50,27 @@ public class Denomination
 
 		return DENOMINATIONS.indexOf(this) - DENOMINATIONS.indexOf(obj);
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof Denomination)
-			return compareTo((Denomination) obj) == 0;
-		else
+		if (this == obj)
+			return true;
+		if (obj == null)
 			return false;
+		if (!(obj instanceof Denomination))
+			return false;
+		Denomination other = (Denomination) obj;
+		if (caractere == null) {
+			if (other.caractere != null)
+				return false;
+		} else if (!caractere.equals(other.caractere))
+			return false;
+		if (nom == null) {
+			if (other.nom != null)
+				return false;
+		} else if (!nom.equals(other.nom))
+			return false;
+		return true;
 	}
 
 	@Override
