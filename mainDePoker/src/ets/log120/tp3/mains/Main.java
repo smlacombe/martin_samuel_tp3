@@ -48,9 +48,11 @@ public class Main
 		return listeCartes.iterator();
 	}
 
-	// Retourne la première carte de la main
+	/**
+	 * Retourne la carte la plus forte.
+	 */
 	public Carte first() {
-		return listeCartes.first();
+		return listeCartes.last();
 	}
 
 	public Collection<Carte> getCartes() {
