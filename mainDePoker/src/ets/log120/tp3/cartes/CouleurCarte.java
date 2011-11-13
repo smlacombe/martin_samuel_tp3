@@ -48,5 +48,5 @@ public class CouleurCarte
 	public static final List<CouleurCarte> COULEURS = Collections.unmodifiableList(Arrays.asList(
 		new CouleurCarte[] { TREFLE, CARREAU, PIQUE, COEUR }));
 	
-	String nom;
+	private String nom;
 }
