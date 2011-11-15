@@ -53,5 +53,4 @@ public class RangPokerPaire extends RangPoker {
 	private Denomination paire;
 	private Denomination kicker;
 	private final static int RANG_PAIRE = 2;
-
 }
