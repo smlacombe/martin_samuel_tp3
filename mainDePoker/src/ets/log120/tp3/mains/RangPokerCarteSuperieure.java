@@ -13,6 +13,7 @@ import ets.log120.tp3.cartes.Denomination;
  * valet, le 10, le 9, le 8, le 7, le 6, le 5, le 4, le 3 et le 2.
  * 
  * @author Martin Desharnais
+ * @author Samuel Milette-Lacombe
  */
 public class RangPokerCarteSuperieure extends RangPoker {
 

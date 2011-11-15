@@ -41,12 +41,12 @@ public class RangPokerDeuxPaires extends RangPoker {
 
 		RangPokerDeuxPaires other = (RangPokerDeuxPaires) obj;
 
-		resultat = meilleurePaire.compareTo(meilleurePaire);
+		resultat = meilleurePaire.compareTo(other.meilleurePaire);
 		
 		if (resultat != 0)
 			return resultat;
 		
-		resultat = autrePaire.compareTo(autrePaire);
+		resultat = autrePaire.compareTo(other.autrePaire);
 		
 		if (resultat != 0)
 			return resultat;
