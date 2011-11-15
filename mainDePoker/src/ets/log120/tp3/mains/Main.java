@@ -38,8 +38,6 @@ public class Main
 	public boolean equals(Object obj) {
 		if (obj == null)
 			return false;
-		else if (!(obj instanceof Carte))
-			return false;
 		else
 			return listeCartes.equals(((Main) obj).listeCartes);	
 	}
@@ -52,7 +50,7 @@ public class Main
 	 * Retourne la carte la plus forte.
 	 */
 	public Carte first() {
-		return listeCartes.last();
+		return listeCartes.first();
 	}
 
 	public Collection<Carte> getCartes() {
