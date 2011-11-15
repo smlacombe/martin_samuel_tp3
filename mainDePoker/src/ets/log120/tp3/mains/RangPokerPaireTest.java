@@ -6,7 +6,7 @@ import ets.log120.tp3.cartes.Denomination;
 import junit.framework.TestCase;
 
 public class RangPokerPaireTest extends TestCase {
-	public void testDifferPairesDifferentes()
+	public void testDifferentePaireDifferentes()
 	{
 		Main mainSuperieure = new Main();
 		mainSuperieure.add(new Carte(Denomination.TROIS, CouleurCarte.CARREAU));
@@ -35,7 +35,7 @@ public class RangPokerPaireTest extends TestCase {
 		assertTrue(rangMainInferieure.compareTo(rangMainSuperieure) < 0);
 	}
 	
-	public void testPairesMemePairesDifferentsKicker()
+	public void testPairesMemePaireDifferentKicker()
 	{
 		Main mainSuperieure = new Main();
 		mainSuperieure.add(new Carte(Denomination.TROIS, CouleurCarte.CARREAU));
@@ -64,7 +64,7 @@ public class RangPokerPaireTest extends TestCase {
 		assertTrue(rangMainInferieure.compareTo(rangMainSuperieure) < 0);
 	}
 	
-	public void testMemePairesMemeKicker()
+	public void testMemePaireMemeKicker()
 	{
 		Main main1 = new Main();
 		main1.add(new Carte(Denomination.TROIS, CouleurCarte.CARREAU));

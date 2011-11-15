@@ -3,7 +3,7 @@ package ets.log120.tp3.mains;
 import ets.log120.tp3.cartes.Denomination;
 
 /**
- * Classe chargée de différencier deux RangPoker obtenus de deux Paire.
+ * Classe chargée de différencier deux RangPoker représentant une Paire.
  * 
  * Si les deux joueurs ont une meme paire, on considerera une troisieme carte. Par exemple,
  * Q-Q-K-4-3 bat Q-Q-9-3-2 puisque le roi est plus fort que le neuf. On appelera cette main : une
@@ -52,5 +52,4 @@ public class RangPokerPaire extends RangPoker {
 
 	private Denomination paire;
 	private Denomination kicker;
-
 }
