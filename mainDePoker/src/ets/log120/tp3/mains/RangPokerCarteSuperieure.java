@@ -20,8 +20,8 @@ public class RangPokerCarteSuperieure extends RangPoker {
 	// Constructeur(s)
 	// --------------------------------------------------
 
-	public RangPokerCarteSuperieure(int rang, Denomination meilleure) {
-		super(rang);
+	public RangPokerCarteSuperieure(Denomination meilleure) {
+		super(1);
 		this.meilleure = meilleure;
 	}
 

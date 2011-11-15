@@ -21,8 +21,8 @@ public class RangPokerPaire extends RangPoker {
 	// Constructeur(s)
 	// --------------------------------------------------
 
-	public RangPokerPaire(int rang, Denomination paire, Denomination kicker) {
-		super(rang);
+	public RangPokerPaire(Denomination paire, Denomination kicker) {
+		super(2);
 		this.paire = paire;
 		this.kicker = kicker;
 	}
