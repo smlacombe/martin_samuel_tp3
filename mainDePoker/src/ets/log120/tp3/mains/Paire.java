@@ -21,7 +21,7 @@ public class Paire extends AbstractAnalyseurRang {
 				kicker = entry.getKey();
 			
 			if (paire != null && kicker != null) {
-				contexte.setRangReconnu(new RangPokerPaire(2, paire, kicker));
+				contexte.setRangReconnu(new RangPokerPaire(paire, kicker));
 				return true;
 			}
 		}

@@ -16,7 +16,7 @@ public class Main
 	// --------------------------------------------------
 
 	public Main() {
-		listeCartes = new TreeSet<Carte>();
+		listeCartes = new TreeSet<Carte>(new ets.util.functional.Greater<Carte>());
 	}
 
 	// --------------------------------------------------

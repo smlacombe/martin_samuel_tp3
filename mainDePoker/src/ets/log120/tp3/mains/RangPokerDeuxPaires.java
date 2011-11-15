@@ -3,7 +3,7 @@ package ets.log120.tp3.mains;
 import ets.log120.tp3.cartes.Denomination;
 
 /**
- * Classe chargée de différencier deux RangPoker représentant une paire.
+ * Classe chargée de différencier deux RangPoker représentant deux paires.
  * 
  * Si les deux joueurs ont une meme paire, on considerera une troisieme carte. Par exemple,
  * Q-Q-K-4-3 bat Q-Q-9-3-2 puisque le roi est plus fort que le neuf. On appelera cette main : une
@@ -13,17 +13,19 @@ import ets.log120.tp3.cartes.Denomination;
  * deux mains ont la même paire, ou les mêmes deux paires. La carte « kicker » est la carte
  * supérieure succédant à la paire.
  * 
+ * @author Samuel Milette Lacombe
  * @author Martin Desharnais
  */
-public class RangPokerPaire extends RangPoker {
+public class RangPokerDeuxPaires extends RangPoker {
 
 	// --------------------------------------------------
 	// Constructeur(s)
 	// --------------------------------------------------
 
-	public RangPokerPaire(Denomination paire, Denomination kicker) {
-		super(RANG_PAIRE);
-		this.paire = paire;
+	public RangPokerDeuxPaires(Denomination autrePaire, Denomination meilleurePaire, Denomination kicker) {
+		super(RANG_DEUX_PAIRES);
+		this.autrePaire = autrePaire;
+		this.meilleurePaire = meilleurePaire;
 		this.kicker = kicker;
 	}
 
@@ -37,21 +39,28 @@ public class RangPokerPaire extends RangPoker {
 		if (resultat != 0)
 			return resultat;
 
-		RangPokerPaire other = (RangPokerPaire) obj;
+		RangPokerDeuxPaires other = (RangPokerDeuxPaires) obj;
 
-		resultat = paire.compareTo(other.paire);
-		if (resultat == 0)
-			resultat = kicker.compareTo(other.kicker);
+		resultat = meilleurePaire.compareTo(meilleurePaire);
+		
+		if (resultat != 0)
+			return resultat;
+		
+		resultat = autrePaire.compareTo(autrePaire);
+		
+		if (resultat != 0)
+			return resultat;
 
-		return resultat;
+		return kicker.compareTo(other.kicker);
 	}
 
 	// --------------------------------------------------
 	// Attribut(s)
 	// --------------------------------------------------
 
-	private Denomination paire;
+	private Denomination autrePaire;
+	private Denomination meilleurePaire;
 	private Denomination kicker;
-	private final static int RANG_PAIRE = 2;
+	private final static int RANG_DEUX_PAIRES = 3;
 
 }
