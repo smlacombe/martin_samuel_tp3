@@ -1,5 +1,8 @@
 package ets.log120.tp3.mains;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 import ets.log120.tp3.cartes.Carte;
 import ets.log120.tp3.cartes.Denomination;
 
@@ -15,20 +18,35 @@ import ets.log120.tp3.cartes.Denomination;
 public class Quinte extends AbstractAnalyseurRang {
 	@Override
 	protected boolean reconnaitreMain(ReqAnalyseMain contexte) {
-		Denomination derniereDenomination = null;
-		for(Carte carte : contexte.getMain()) {
-			if (derniereDenomination == null)
-				derniereDenomination = carte.getDenomination();
-			else {
-				int precedant = Denomination.DENOMINATIONS.indexOf(derniereDenomination);
-				int courant   = Denomination.DENOMINATIONS.indexOf(carte.getDenomination());
-				if (precedant != courant - 1
-					&& !(derniereDenomination.equals(Denomination.CINQ) && carte.getDenomination().equals(Denomination.AS)))
-					return false;
-				derniereDenomination = carte.getDenomination();
+		LinkedList<Denomination> quinte = new LinkedList<Denomination>();
+		boolean asPresent = false;
+		
+		for (Carte carte : contexte.getMain()) {
+			if (carte.getDenomination().equals(Denomination.AS))
+				asPresent = true;
+
+			if (quinte.size() == 0) {
+				quinte.addLast(carte.getDenomination());
+			} else {
+				int precedant = Denomination.DENOMINATIONS.indexOf(quinte.getLast());
+				int courant = Denomination.DENOMINATIONS.indexOf(carte.getDenomination());
+				if (precedant == courant + 1) {
+					quinte.addLast(carte.getDenomination());
+					if (quinte.size() > 5)
+						quinte.removeLast();
+				} else {
+					quinte.clear();
+					quinte.addLast(carte.getDenomination());
+				}
 			}
 		}
-		contexte.setRangReconnu(new RangPoker(5));
-		return true;
+
+		if (quinte.size() == 5
+				|| (quinte.size() == 4 && quinte.getLast().equals(Denomination.DEUX) && asPresent)) {
+			contexte.setRangReconnu(new RangPokerQuinte(quinte.getFirst()));
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
