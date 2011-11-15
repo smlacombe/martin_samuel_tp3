@@ -5,7 +5,7 @@ public class AnalyseurRangFactory {
 	AbstractAnalyseurRang analyseur = null;
 	AbstractAnalyseurRang debutAnalyseur = null;
 	
-	debutAnalyseur = analyseur = ajouterAnalyseur(analyseur, new Brelan());
+	debutAnalyseur = analyseur = new Brelan();
 	analyseur = ajouterAnalyseur(analyseur, new DeuxPaires());
 	analyseur = ajouterAnalyseur(analyseur, new Paire());
 	analyseur = ajouterAnalyseur(analyseur, new CarteSuperieure());
@@ -14,9 +14,8 @@ public class AnalyseurRangFactory {
     }
     
     private static AbstractAnalyseurRang ajouterAnalyseur(AbstractAnalyseurRang analyseur, AbstractAnalyseurRang maillon) {
-	if (analyseur != null)
-	    analyseur.setSuivant(maillon);
-	analyseur = maillon;
-	return analyseur;
+		analyseur.setSuivant(maillon);
+		analyseur = maillon;
+		return analyseur;
     }
 }

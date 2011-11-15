@@ -22,7 +22,7 @@ public class RangPokerDeuxPaires extends RangPoker {
 	// Constructeur(s)
 	// --------------------------------------------------
 
-	public RangPokerDeuxPaires(Denomination autrePaire, Denomination meilleurePaire, Denomination kicker) {
+	public RangPokerDeuxPaires(Denomination meilleurePaire, Denomination autrePaire, Denomination kicker) {
 		super(RANG_DEUX_PAIRES);
 		this.autrePaire = autrePaire;
 		this.meilleurePaire = meilleurePaire;
