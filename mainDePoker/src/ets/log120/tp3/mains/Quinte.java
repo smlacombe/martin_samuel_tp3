@@ -1,6 +1,7 @@
 package ets.log120.tp3.mains;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import ets.log120.tp3.cartes.Carte;
@@ -20,8 +21,11 @@ public class Quinte extends AbstractAnalyseurRang {
 	protected boolean reconnaitreMain(ReqAnalyseMain contexte) {
 		LinkedList<Denomination> quinte = new LinkedList<Denomination>();
 		boolean asPresent = false;
-		
-		for (Carte carte : contexte.getMain()) {
+
+		Iterator<Carte> it = contexte.getMain().iterator();
+		while (it.hasNext() && quinte.size() < 5) {
+			Carte carte = it.next();
+
 			if (carte.getDenomination().equals(Denomination.AS))
 				asPresent = true;
 
@@ -32,8 +36,6 @@ public class Quinte extends AbstractAnalyseurRang {
 				int courant = Denomination.DENOMINATIONS.indexOf(carte.getDenomination());
 				if (precedant == courant + 1) {
 					quinte.addLast(carte.getDenomination());
-					if (quinte.size() > 5)
-						quinte.removeLast();
 				} else {
 					quinte.clear();
 					quinte.addLast(carte.getDenomination());
