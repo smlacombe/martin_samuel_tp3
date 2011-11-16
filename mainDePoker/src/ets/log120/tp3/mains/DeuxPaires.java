@@ -15,20 +15,20 @@ public class DeuxPaires extends AbstractAnalyseurRang {
 	@Override
 	protected boolean reconnaitreMain(ReqAnalyseMain contexte) {
 		TreeMap<Denomination, Integer> map = Paire.compterDenominations(contexte.getMain());
-		Denomination autrePaire = null;
 		Denomination meilleurePaire = null;
+		Denomination autrePaire = null;
 		Denomination kicker = null;
 		
 		for (Map.Entry<Denomination, Integer> entry : map.entrySet()) {
 			if (meilleurePaire == null && entry.getValue() >= 2)
 				meilleurePaire = entry.getKey();
-			if (autrePaire == null && meilleurePaire != null && entry.getValue() >= 2)
+			else if (autrePaire == null && entry.getValue() >= 2)
 				autrePaire = entry.getKey();
 			else if (kicker == null)
 				kicker = entry.getKey();
 			
 			if (meilleurePaire != null && autrePaire != null && kicker != null) {
-				contexte.setRangReconnu(new RangPokerDeuxPaires(autrePaire, meilleurePaire, kicker));
+				contexte.setRangReconnu(new RangPokerDeuxPaires(meilleurePaire, autrePaire, kicker));
 				return true;
 			}
 		}

@@ -22,7 +22,7 @@ public class RangPokerDeuxPaires extends RangPoker {
 	// Constructeur(s)
 	// --------------------------------------------------
 
-	public RangPokerDeuxPaires(Denomination autrePaire, Denomination meilleurePaire, Denomination kicker) {
+	public RangPokerDeuxPaires(Denomination meilleurePaire, Denomination autrePaire, Denomination kicker) {
 		super(RANG_DEUX_PAIRES);
 		this.autrePaire = autrePaire;
 		this.meilleurePaire = meilleurePaire;
@@ -41,12 +41,12 @@ public class RangPokerDeuxPaires extends RangPoker {
 
 		RangPokerDeuxPaires other = (RangPokerDeuxPaires) obj;
 
-		resultat = meilleurePaire.compareTo(meilleurePaire);
+		resultat = meilleurePaire.compareTo(other.meilleurePaire);
 		
 		if (resultat != 0)
 			return resultat;
 		
-		resultat = autrePaire.compareTo(autrePaire);
+		resultat = autrePaire.compareTo(other.autrePaire);
 		
 		if (resultat != 0)
 			return resultat;

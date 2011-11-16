@@ -6,6 +6,10 @@ import ets.log120.tp3.cartes.Denomination;
 import java.util.Iterator;
 import junit.framework.*;
 
+/**
+ * Classe de test pour la classe main.
+ * @author Samuel Milette Lacombe
+ */
 public class MainTest extends TestCase {
 
 	public MainTest(String name) {
