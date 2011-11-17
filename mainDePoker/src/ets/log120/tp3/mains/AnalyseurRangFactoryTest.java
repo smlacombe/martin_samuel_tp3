@@ -24,10 +24,10 @@ public class AnalyseurRangFactoryTest extends TestCase {
 		assertTrue(analyseur instanceof Couleur);
 
 		analyseur = analyseur.getSuivant();
+		*/
 		assertTrue(analyseur instanceof Quinte);
 
 		analyseur = analyseur.getSuivant();
-		*/
 		assertTrue(analyseur instanceof Brelan);
 
 		analyseur = analyseur.getSuivant();

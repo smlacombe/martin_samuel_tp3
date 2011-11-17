@@ -5,7 +5,8 @@ public class AnalyseurRangFactory {
 	AbstractAnalyseurRang analyseur = null;
 	AbstractAnalyseurRang debutAnalyseur = null;
 	
-	debutAnalyseur = analyseur = new Brelan();
+	debutAnalyseur = analyseur = new Quinte();
+	analyseur = ajouterAnalyseur(analyseur, new Brelan());
 	analyseur = ajouterAnalyseur(analyseur, new DeuxPaires());
 	analyseur = ajouterAnalyseur(analyseur, new Paire());
 	analyseur = ajouterAnalyseur(analyseur, new CarteSuperieure());
