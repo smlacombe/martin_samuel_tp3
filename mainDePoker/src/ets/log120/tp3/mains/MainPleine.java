@@ -18,18 +18,15 @@ public class MainPleine extends AbstractAnalyseurRang {
 		
 		Denomination brelan = null;
 		Denomination paire = null;
-		Denomination kicker = null;
 		
 		for (Map.Entry<Denomination, Integer> entry : map.entrySet()) {
 			if (brelan == null && entry.getValue() >= 3)
 				brelan = entry.getKey();
 			else if (paire == null && entry.getValue() >= 2)
 				paire = entry.getKey();
-			else if (kicker == null)
-				kicker = entry.getKey();
 			
-			if (brelan != null && paire != null && ((kicker != null) || contexte.getMain().size() == SOMME_CARTE_MAIN_PLEINE)) {
-				contexte.setRangReconnu(new RangPokerMainPleine(brelan, paire, kicker));
+			if (brelan != null && paire != null) {
+				contexte.setRangReconnu(new RangPokerMainPleine(brelan, paire));
 				return true;
 			}
 		}
@@ -37,5 +34,4 @@ public class MainPleine extends AbstractAnalyseurRang {
 		return false;
 	}
 	
-	private final int SOMME_CARTE_MAIN_PLEINE = 5;
 }

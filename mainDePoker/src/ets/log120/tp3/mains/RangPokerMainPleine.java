@@ -12,11 +12,10 @@ public class RangPokerMainPleine extends RangPoker {
 	// Constructeur(s)
 	// --------------------------------------------------
 
-	public RangPokerMainPleine(Denomination brelan, Denomination paire, Denomination kicker) {
+	public RangPokerMainPleine(Denomination brelan, Denomination paire) {
 		super(RANG_MAIN_PLEINE);
 		this.brelan = brelan;
 		this.paire = paire;
-		this.kicker = kicker;
 	}
 
 	// --------------------------------------------------
@@ -38,10 +37,7 @@ public class RangPokerMainPleine extends RangPoker {
 		
 		resultat = paire.compareTo(other.paire);
 		
-		if (resultat != 0)
-			return resultat;
-
-		return kicker.compareTo(other.kicker);
+		return resultat;
 	}
 
 	// --------------------------------------------------
@@ -50,6 +46,5 @@ public class RangPokerMainPleine extends RangPoker {
 
 	private Denomination brelan;
 	private Denomination paire;
-	private Denomination kicker;
 	private final static int RANG_MAIN_PLEINE = 7;
 }
