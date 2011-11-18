@@ -92,4 +92,33 @@ public class RangPokerPaireTest extends TestCase {
 		assertTrue(rangMain1.compareTo(rangMain2) == 0);
 		assertTrue(rangMain2.compareTo(rangMain1) == 0);
 	}
+	
+	public void testMemePaireMemeKickerPlusJoker()
+	{
+		Main mainSuperieure = new Main();
+		mainSuperieure.add(Carte.JOKER);
+		mainSuperieure.add(new Carte(Denomination.TROIS, CouleurCarte.CARREAU));
+		mainSuperieure.add(new Carte(Denomination.TROIS, CouleurCarte.PIQUE));
+		mainSuperieure.add(new Carte(Denomination.SEPT,  CouleurCarte.COEUR));
+		mainSuperieure.add(new Carte(Denomination.DIX,   CouleurCarte.TREFLE));
+		
+		Main mainInferieure = new Main();
+		mainInferieure.add(new Carte(Denomination.TROIS, CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.TROIS, CouleurCarte.COEUR));
+		mainInferieure.add(new Carte(Denomination.CINQ,  CouleurCarte.TREFLE));
+		mainInferieure.add(new Carte(Denomination.SIX,   CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.HUIT,  CouleurCarte.PIQUE));
+		
+		ReqAnalyseMain requeteMainSuperieure = new ReqAnalyseMain(mainSuperieure);
+		ReqAnalyseMain requeteMainInferieure = new ReqAnalyseMain(mainInferieure);
+		
+		assertTrue(new Paire().reconnaitreMain(requeteMainSuperieure));
+		assertTrue(new Paire().reconnaitreMain(requeteMainInferieure));
+		
+		RangPoker rangMainSuperieure = requeteMainSuperieure.getRangReconnu();
+		RangPoker rangMainInferieure = requeteMainInferieure.getRangReconnu();
+		
+		assertTrue(rangMainSuperieure.compareTo(rangMainInferieure) > 0);
+		assertTrue(rangMainInferieure.compareTo(rangMainSuperieure) < 0);
+	}
 }

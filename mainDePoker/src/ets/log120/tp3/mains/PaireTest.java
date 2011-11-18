@@ -42,4 +42,15 @@ public class PaireTest extends TestCase {
 		assertTrue(new Paire().reconnaitreMain(new ReqAnalyseMain(main)));
 	}
 
+	public void testPaireAvecJoker()
+	{
+		Main main = new Main();
+		main.add(Carte.JOKER);
+		main.add(new Carte(Denomination.DEUX, CouleurCarte.COEUR));
+		main.add(new Carte(Denomination.DIX,  CouleurCarte.TREFLE));
+		main.add(new Carte(Denomination.AS,   CouleurCarte.CARREAU));
+		main.add(new Carte(Denomination.ROI,  CouleurCarte.PIQUE));
+		
+		assertTrue(new Paire().reconnaitreMain(new ReqAnalyseMain(main)));
+	}
 }
