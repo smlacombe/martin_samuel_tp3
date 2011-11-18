@@ -20,8 +20,8 @@ public class Paire extends AbstractAnalyseurRang {
 		
 		for (Map.Entry<Denomination, Integer> entry : map.entrySet()) {
 			
-			if (paire == null && entry.getValue() >= 2
-					|| (entry.getValue() == 1 && nombreJoker-- >= 1))
+			if (paire == null && (entry.getValue() >= 2
+					|| (entry.getValue() == 1 && nombreJoker-- >= 1)))
 				paire = entry.getKey();
 			else if (kicker == null)
 				kicker = entry.getKey();
