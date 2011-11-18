@@ -1,5 +1,6 @@
 package ets.log120.tp3.mains;
 
+import java.util.Iterator;
 import java.util.TreeMap;
 
 import ets.log120.tp3.cartes.Carte;
@@ -15,20 +16,26 @@ import ets.log120.tp3.cartes.Denomination;
 public class Carre extends AbstractAnalyseurRang {
 	@Override
 	protected boolean reconnaitreMain(ReqAnalyseMain contexte) {
-		TreeMap<Denomination, Integer> nombreDenominations = new TreeMap<Denomination, Integer>();
+		Denomination precedante = null;
+		int n = 0;
 		
-		for (Carte carte : contexte.getMain()) {
-			Integer nombre = nombreDenominations.get(carte.getDenomination());
-			nombre = (nombre == null) ? 1 : nombre + 1;
-					
-			if (nombre == 4) {
-				contexte.setRangReconnu(new RangPoker(8));
-				return true;
+		Iterator<Carte> it = contexte.getMain().iterator();
+		while (it.hasNext() && n < 4) {
+			Denomination courante = it.next().getDenomination();
+			
+			if (precedante == null || !precedante.equals(courante)) {
+				precedante = courante;
+				n = 1;
 			} else {
-				nombreDenominations.put(carte.getDenomination(), nombre);
+				++n;
 			}
 		}
 		
-		return false;
+		if (n == 4) {
+			contexte.setRangReconnu(new RangPokerCarre(precedante));
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

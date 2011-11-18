@@ -15,6 +15,7 @@ public class AnalyseurRangFactoryTest extends TestCase {
 		assertTrue(analyseur instanceof QuinteCouleur);
 
 		analyseur = analyseur.getSuivant();
+		*/
 		assertTrue(analyseur instanceof Carre);
 
 		analyseur = analyseur.getSuivant();
@@ -24,7 +25,6 @@ public class AnalyseurRangFactoryTest extends TestCase {
 		assertTrue(analyseur instanceof Couleur);
 
 		analyseur = analyseur.getSuivant();
-		*/
 		assertTrue(analyseur instanceof Quinte);
 
 		analyseur = analyseur.getSuivant();

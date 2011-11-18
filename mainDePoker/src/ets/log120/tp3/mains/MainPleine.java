@@ -7,8 +7,13 @@ import ets.log120.tp3.cartes.Denomination;
 
 /**
 * Classe chargée de reconnaître dans une main, une main pleine (full house)
-* Une main pleine (full house) est constitué d'un brelan et une paire. Le rang de la main pleine est déterminé par le triple et, dans un cas d'égalité des
-* triples, par la paire.
+* 
+* Une main pleine (full house) est constituée d'un brelan et d'une paire. Le rang de la main pleine
+* est déterminé par le triple et, dans un cas d'égalité des triples, par la paire.
+* 
+* Dans le cas de deux mains avec deux paires, c'est la paire supérieure qui l'emporte, ou bien la
+* paire inférieure en cas d'égalité pour la paire supérieure. 
+* 
 * @author Samuel Milette-Lacombe
 **/
 public class MainPleine extends AbstractAnalyseurRang {

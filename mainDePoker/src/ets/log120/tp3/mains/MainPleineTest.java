@@ -11,7 +11,7 @@ public class MainPleineTest extends TestCase {
 		Main main = new Main();
 		main.add(new Carte(Denomination.DAME, CouleurCarte.PIQUE));
 		main.add(new Carte(Denomination.DAME, CouleurCarte.COEUR));
-		main.add(new Carte(Denomination.DAME,  CouleurCarte.TREFLE));
+		main.add(new Carte(Denomination.DAME, CouleurCarte.TREFLE));
 		main.add(new Carte(Denomination.AS,   CouleurCarte.CARREAU));
 		main.add(new Carte(Denomination.ROI,  CouleurCarte.PIQUE));
 		
@@ -23,9 +23,9 @@ public class MainPleineTest extends TestCase {
 		Main main = new Main();
 		main.add(new Carte(Denomination.DAME, CouleurCarte.PIQUE));
 		main.add(new Carte(Denomination.DAME, CouleurCarte.COEUR));
-		main.add(new Carte(Denomination.DAME,  CouleurCarte.TREFLE));
+		main.add(new Carte(Denomination.DAME, CouleurCarte.TREFLE));
 		main.add(new Carte(Denomination.AS,   CouleurCarte.CARREAU));
-		main.add(new Carte(Denomination.AS,  CouleurCarte.PIQUE));
+		main.add(new Carte(Denomination.AS,   CouleurCarte.PIQUE));
 		
 		assertTrue(new MainPleine().reconnaitreMain(new ReqAnalyseMain(main)));
 	}
@@ -33,11 +33,11 @@ public class MainPleineTest extends TestCase {
 	public void testMainPleineRoiDeux()
 	{
 		Main main = new Main();
-		main.add(new Carte(Denomination.ROI, CouleurCarte.PIQUE));
-		main.add(new Carte(Denomination.ROI, CouleurCarte.COEUR));
+		main.add(new Carte(Denomination.ROI,  CouleurCarte.PIQUE));
+		main.add(new Carte(Denomination.ROI,  CouleurCarte.COEUR));
 		main.add(new Carte(Denomination.ROI,  CouleurCarte.TREFLE));
-		main.add(new Carte(Denomination.DEUX,   CouleurCarte.CARREAU));
-		main.add(new Carte(Denomination.DEUX,  CouleurCarte.PIQUE));
+		main.add(new Carte(Denomination.DEUX, CouleurCarte.CARREAU));
+		main.add(new Carte(Denomination.DEUX, CouleurCarte.PIQUE));
 		
 		assertTrue(new MainPleine().reconnaitreMain(new ReqAnalyseMain(main)));
 	}
