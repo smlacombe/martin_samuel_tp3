@@ -18,7 +18,8 @@ public class RangPokerQuinte extends RangPoker {
     // --------------------------------------------------
 
     public RangPokerQuinte(Denomination meilleure) {
-	super(5);
+    	super(5);
+    	this.meilleure = meilleure;
     }
 
     // --------------------------------------------------
@@ -27,13 +28,14 @@ public class RangPokerQuinte extends RangPoker {
 
     @Override
     public int compareTo(RangPoker obj) {
-	int resultat = super.compareTo(obj);
-	if (resultat != 0)
-	    return resultat;
+    	int resultat = super.compareTo(obj);
+    	
+    	if (resultat != 0)
+    		return resultat;
 
-	RangPokerQuinte other = (RangPokerQuinte) obj;
+		RangPokerQuinte other = (RangPokerQuinte) obj;
 
-	return meilleure.compareTo(other.meilleure);
+		return meilleure.compareTo(other.meilleure);
     }
 
     // --------------------------------------------------

@@ -17,7 +17,7 @@ import ets.log120.tp3.cartes.Denomination;
 public class Brelan extends AbstractAnalyseurRang {
 	@Override
 	protected boolean reconnaitreMain(ReqAnalyseMain contexte) {
-		TreeMap<Denomination, Integer> map = Paire.compterDenominations(contexte.getMain());
+		TreeMap<Denomination, Integer> map = AnalyseurUtil.compterDenominations(contexte.getMain());
 		
 		Denomination brelan = null;
 		Denomination kicker = null;
