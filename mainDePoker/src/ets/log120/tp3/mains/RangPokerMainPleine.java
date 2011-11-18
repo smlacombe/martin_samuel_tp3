@@ -4,6 +4,7 @@ import ets.log120.tp3.cartes.Denomination;
 
 /**
  * Classe chargée de différencier deux RangPoker représentants deux brelans.
+ * 
  * @author Samuel Milette Lacombe
  */
 public class RangPokerMainPleine extends RangPoker {
