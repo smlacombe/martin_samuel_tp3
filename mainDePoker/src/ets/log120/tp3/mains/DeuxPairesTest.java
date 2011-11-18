@@ -39,7 +39,6 @@ public class DeuxPairesTest extends TestCase {
 		assertTrue(new DeuxPaires().reconnaitreMain(new ReqAnalyseMain(main)));
 	}
 	
-	// Ne marche pas car l'implémentation de la classe Main ne permet pas la duplication de cartes
 	public void testPasDePaireDeuxJokers() {
 		Main main = new Main();
 		main.add(Carte.JOKER);
