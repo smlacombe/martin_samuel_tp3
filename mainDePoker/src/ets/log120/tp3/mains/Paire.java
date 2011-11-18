@@ -13,6 +13,7 @@ public class Paire extends AbstractAnalyseurRang {
 		
 		Denomination paire = null;
 		Denomination kicker = null;
+
 		Integer nombreJoker = map.remove(Denomination.JOKER);
 		if (nombreJoker == null)
 			nombreJoker = 0;
