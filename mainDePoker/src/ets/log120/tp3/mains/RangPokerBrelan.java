@@ -19,7 +19,8 @@ public class RangPokerBrelan extends RangPoker {
 	
 	public RangPokerBrelan(Denomination brelan, Denomination kicker) {
 		super(4);
-		rangPoker = new RangPokerPaire(brelan, kicker);
+		this.brelan = brelan;
+		this.kicker = kicker;
 	}
 	
 	// --------------------------------------------------
@@ -28,12 +29,24 @@ public class RangPokerBrelan extends RangPoker {
 
 	@Override
 	public int compareTo(RangPoker obj) {
-		return rangPoker.compareTo(obj);
+		int resultat = super.compareTo(obj);
+		if (resultat != 0)
+			return resultat;
+
+		RangPokerBrelan other = (RangPokerBrelan) obj;
+
+		resultat = brelan.compareTo(other.brelan);
+		if (resultat == 0)
+			resultat = kicker.compareTo(other.kicker);
+
+		return resultat;
 	}
 
 	// --------------------------------------------------
 	// Attribut(s)
 	// --------------------------------------------------
 
+	private Denomination brelan;
+	private Denomination kicker;
 	RangPokerPaire rangPoker;
 }
