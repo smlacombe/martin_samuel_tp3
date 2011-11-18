@@ -11,6 +11,7 @@ public class CouleurCarte
     public static final CouleurCarte CARREAU = new CouleurCarte("carreau");
     public static final CouleurCarte PIQUE   = new CouleurCarte("pique");
     public static final CouleurCarte COEUR   = new CouleurCarte("coeur");
+    public static final CouleurCarte JOKER   = new CouleurCarte("joker");
 
 	// --------------------------------------------------
 	// Constructeur(s)
@@ -46,7 +47,7 @@ public class CouleurCarte
 	// --------------------------------------------------
 
 	public static final List<CouleurCarte> COULEURS = Collections.unmodifiableList(Arrays.asList(
-		new CouleurCarte[] { TREFLE, CARREAU, PIQUE, COEUR }));
+		new CouleurCarte[] { TREFLE, CARREAU, PIQUE, COEUR, JOKER}));
 	
 	private String nom;
 }
