@@ -22,11 +22,18 @@ public class Brelan extends AbstractAnalyseurRang {
 		Denomination brelan = null;
 		Denomination kicker = null;
 		
+		Integer nombreJoker = map.remove(Denomination.JOKER);
+		if (nombreJoker == null)
+			nombreJoker = 0;
+		
 		for (Map.Entry<Denomination, Integer> entry : map.entrySet()) {
-			if (brelan == null && entry.getValue() >= 3)
+			if (brelan == null && (entry.getValue() + nombreJoker >= 3)) {
 				brelan = entry.getKey();
-			else if (kicker == null)
+				if (entry.getValue() < 3)
+					nombreJoker -= 3 - entry.getValue();
+			} else if (kicker == null) {
 				kicker = entry.getKey();
+			}
 			
 			if (brelan != null && kicker != null) {
 				contexte.setRangReconnu(new RangPokerBrelan(brelan, kicker));
