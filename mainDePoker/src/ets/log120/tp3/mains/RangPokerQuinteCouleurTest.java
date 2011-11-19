@@ -31,9 +31,7 @@ public class RangPokerQuinteCouleurTest extends TestCase {
 		
 		RangPoker rangMainSuperieure = requeteMainSuperieure.getRangReconnu();
 		RangPoker rangMainInferieure = requeteMainInferieure.getRangReconnu();
-		
-		System.out.println(rangMainSuperieure.compareTo(rangMainInferieure));
-		
+				
 		assertTrue(rangMainSuperieure.compareTo(rangMainInferieure) > 0);
 		assertTrue(rangMainInferieure.compareTo(rangMainSuperieure) < 0);
 	}
