@@ -21,14 +21,25 @@ public class MainPleine extends AbstractAnalyseurRang {
 	protected boolean reconnaitreMain(ReqAnalyseMain contexte) {
 		TreeMap<Denomination, Integer> map = AnalyseurUtil.compterDenominations(contexte.getMain());
 		
+		Integer nombreJoker = map.remove(Denomination.JOKER);
+		
+		if (nombreJoker == null)
+			nombreJoker = 0;
+		
 		Denomination brelan = null;
 		Denomination paire = null;
 		
 		for (Map.Entry<Denomination, Integer> entry : map.entrySet()) {
-			if (brelan == null && entry.getValue() >= 3)
+			if ((brelan == null) 
+			&& ((entry.getValue() >= 3) || ((entry.getValue() == 2) && (nombreJoker >= 1)))) {
 				brelan = entry.getKey();
-			else if (paire == null && entry.getValue() >= 2)
+				nombreJoker--;
+			}
+			else if ((paire == null)
+			&& ((entry.getValue() >= 2) || ((entry.getValue() == 1) && (nombreJoker >= 1)))) {
 				paire = entry.getKey();
+				nombreJoker--;
+			}
 			
 			if (brelan != null && paire != null) {
 				contexte.setRangReconnu(new RangPokerMainPleine(brelan, paire));

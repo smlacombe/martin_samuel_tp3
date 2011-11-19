@@ -10,6 +10,7 @@ import ets.log120.tp3.cartes.Denomination;
  * Une quinte royale est une quinte couleur dont la carte la plus haute est l'as.
  * 
  * @author Martin Desharnais
+ * @author Samuel Milette-Lacombe
  * @see ets.log120.tp3.QuinteCouleur
  */
 public class QuinteRoyale extends AbstractAnalyseurRang {

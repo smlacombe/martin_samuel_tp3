@@ -5,6 +5,11 @@ import ets.log120.tp3.cartes.CouleurCarte;
 import junit.framework.TestCase;
 import ets.log120.tp3.cartes.Denomination;
 
+/**
+ * Classe test chargée de tester la reconnaissance ou non de quinte royale.
+ * @author Samuel Milette-Lacombe
+ * @see ets.log120.tp3.QuinteRoyale
+ */
 public class QuinteRoyaleTest extends TestCase {
 	public void testQuinteRoyale()
 	{
