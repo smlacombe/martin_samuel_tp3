@@ -16,6 +16,7 @@ import ets.log120.tp3.cartes.Denomination;
  * doit être toujours au début ou à la fin d'une séquence.
  * 
  * @author Martin Desharnais
+ * @author Samuel Milette-Lacombe
  */
 public class Quinte extends AbstractAnalyseurRang {
 	@Override

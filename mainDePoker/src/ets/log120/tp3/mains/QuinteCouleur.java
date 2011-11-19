@@ -14,6 +14,7 @@ import ets.log120.tp3.cartes.Denomination;
  * Une quinte couleur est une quinte où toutes les cartes sont de la même couleur.
  * 
  * @author Martin Desharnais
+ * @author Samuel Milette-Lacombe
  * @see ets.log120.tp3.Quinte
  */
 public class QuinteCouleur extends AbstractAnalyseurRang {
