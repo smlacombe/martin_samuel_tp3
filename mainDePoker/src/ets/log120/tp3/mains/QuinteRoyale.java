@@ -19,7 +19,7 @@ public class QuinteRoyale extends AbstractAnalyseurRang {
 		QuinteCouleur quinteCouleur = new QuinteCouleur();
 		if ((quinteCouleur.reconnaitreMain(contexte)) &&
 		(contexte.getMain().first().getDenomination().equals(Denomination.AS))) {
-			contexte.setRangReconnu(new RangPoker(12));
+			contexte.setRangReconnu(new RangPoker(11));
 			return true;
 		}
 	

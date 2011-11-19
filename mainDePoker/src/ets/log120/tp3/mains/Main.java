@@ -31,8 +31,10 @@ public class Main
 
 	// Retourne le rang de la main courante
 	public RangPoker getRangPoker() {
-		assert false : "Pas implémenter";
-		return null;
+		AbstractAnalyseurRang analyseur = AnalyseurRangFactory.makeAnalyseurRang();
+		ReqAnalyseMain requeteMain = new ReqAnalyseMain(this);
+		analyseur.reconnaitreMain(requeteMain);
+		return requeteMain.getRangReconnu();
 	}
 
 	@Override
@@ -66,8 +68,10 @@ public class Main
 
 	@Override
 	public int compareTo(Main obj) {
-		assert false : "TODO: implémenter cette fonction";
-		return 0;
+		AbstractAnalyseurRang analyseur = AnalyseurRangFactory.makeAnalyseurRang();
+		ReqAnalyseMain requeteMain = new ReqAnalyseMain(obj);
+		analyseur.reconnaitreMain(requeteMain);
+		return getRangPoker().compareTo(requeteMain.getRangReconnu());
 	}
 
 	// --------------------------------------------------
