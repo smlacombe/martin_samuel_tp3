@@ -30,31 +30,37 @@ public class Quinte extends AbstractAnalyseurRang {
 		boolean asPresent = false;
 
 		Iterator<Carte> it = contexte.getMain().iterator();
+		Denomination dernierNonJoker=null;
 		while (it.hasNext() && quinte.size() < 5) {
 			Carte carte = it.next();
-
-			if (carte.getDenomination().equals(Denomination.AS))
+			Denomination denominationCourante = carte.getDenomination();
+			
+			if (denominationCourante.equals(Denomination.AS))
 				asPresent = true;
 
 			if (quinte.size() == 0) {
-				quinte.addLast(carte.getDenomination());
+				quinte.addLast(denominationCourante);
 			} else {
 				Denomination denominationPrecedente = quinte.getLast();
 				int valeurPrecedente = Denomination.DENOMINATIONS.indexOf(denominationPrecedente);
-				int valeurCourante = Denomination.DENOMINATIONS.indexOf(carte.getDenomination());
-				
+				int valeurCourante = Denomination.DENOMINATIONS.indexOf(denominationCourante);
+								
 				if ((valeurPrecedente == valeurCourante  + 1) || (nombreJoker-->=1)) {
-					quinte.addLast(carte.getDenomination());
+					if (!(carte.getDenomination().equals(Denomination.JOKER)))
+						dernierNonJoker = denominationCourante;
+					
+					quinte.addLast(denominationCourante);
 				} else {
 					quinte.clear();
-					quinte.addLast(carte.getDenomination());
+					quinte.addLast(denominationCourante);
 				}
 			}
 		}
 
 		if (quinte.size() == 5
 				|| (quinte.size() == 4 && quinte.getLast().equals(Denomination.DEUX) && asPresent)) {
-			contexte.setRangReconnu(new RangPokerQuinte(quinte.getFirst()));
+			Denomination meilleure = Denomination.DENOMINATIONS.get(Denomination.DENOMINATIONS.indexOf(dernierNonJoker) + 4);
+			contexte.setRangReconnu(new RangPokerQuinte(meilleure));
 			return true;
 		} else {
 			return false;
