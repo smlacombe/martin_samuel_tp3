@@ -3,6 +3,8 @@ package ets.log120.tp3.cartes;
 public class Carte
 	implements Comparable<Carte>{
 
+	public static final Carte JOKER = new Carte(Denomination.JOKER, CouleurCarte.JOKER);
+	
 	// --------------------------------------------------
 	// Constructeur(s)
 	// --------------------------------------------------

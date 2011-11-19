@@ -83,7 +83,7 @@ public class Denomination
 	// --------------------------------------------------
 
 	public static final List<Denomination> DENOMINATIONS = Collections.unmodifiableList(Arrays.asList(
-		new Denomination[] { DEUX, TROIS, QUATRE, CINQ, SIX, SEPT, HUIT, NEUF, DIX, VALET, DAME, ROI, AS }));
+		new Denomination[] { DEUX, TROIS, QUATRE, CINQ, SIX, SEPT, HUIT, NEUF, DIX, VALET, DAME, ROI, AS, JOKER }));
 	
 	private String nom;
 	private String caractere;

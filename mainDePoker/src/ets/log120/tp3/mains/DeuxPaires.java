@@ -19,10 +19,16 @@ public class DeuxPaires extends AbstractAnalyseurRang {
 		Denomination autrePaire = null;
 		Denomination kicker = null;
 		
+		Integer nombreJoker = map.remove(Denomination.JOKER);
+		if (nombreJoker == null)
+			nombreJoker = 0;
+		
 		for (Map.Entry<Denomination, Integer> entry : map.entrySet()) {
-			if (meilleurePaire == null && entry.getValue() >= 2)
+			if (meilleurePaire == null && (entry.getValue() >= 2
+					|| (entry.getValue() == 1 && nombreJoker-- >= 1)))
 				meilleurePaire = entry.getKey();
-			else if (autrePaire == null && entry.getValue() >= 2)
+			else if (autrePaire == null && (entry.getValue() >= 2
+					|| (entry.getValue() == 1 && nombreJoker-- >= 1)))
 				autrePaire = entry.getKey();
 			else if (kicker == null)
 				kicker = entry.getKey();

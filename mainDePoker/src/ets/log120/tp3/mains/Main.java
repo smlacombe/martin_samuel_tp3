@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import com.google.common.collect.TreeMultiset;
 
 import ets.log120.tp3.cartes.Carte;
 
@@ -16,7 +17,7 @@ public class Main
 	// --------------------------------------------------
 
 	public Main() {
-		listeCartes = new TreeSet<Carte>(new ets.util.functional.Greater<Carte>());
+		listeCartes = TreeMultiset.create(new ets.util.functional.Greater<Carte>());
 	}
 
 	// --------------------------------------------------
@@ -50,7 +51,7 @@ public class Main
 	 * Retourne la carte la plus forte.
 	 */
 	public Carte first() {
-		return listeCartes.first();
+		return listeCartes.entrySet().iterator().next().getElement();
 	}
 
 	public Collection<Carte> getCartes() {
@@ -85,5 +86,5 @@ public class Main
 	// Attribut(s)
 	// --------------------------------------------------
 	
-	private TreeSet<Carte> listeCartes;
+	private TreeMultiset<Carte> listeCartes;
 }
