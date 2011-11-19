@@ -18,10 +18,8 @@ public class Quintuplet extends AbstractAnalyseurRang {
 		
 		for (Map.Entry<Denomination, Integer> entry : map.entrySet()) {
 			
-			if (quintuplet == null && (entry.getValue() + nombreJoker >= 5))
+			if (entry.getValue() + nombreJoker >= 5) {
 				quintuplet = entry.getKey();
-					
-			if (quintuplet != null) {
 				contexte.setRangReconnu(new RangPokerQuintuplet(quintuplet));
 				return true;
 			}
