@@ -1,5 +1,12 @@
 package ets.log120.tp3.mains;
 
+import java.util.Iterator;
+import java.util.LinkedList;
+
+import ets.log120.tp3.cartes.Carte;
+import ets.log120.tp3.cartes.CouleurCarte;
+import ets.log120.tp3.cartes.Denomination;
+
 /**
  * Classe chargée de reconnaître une quinte couleur.
  * 
@@ -11,15 +18,43 @@ package ets.log120.tp3.mains;
 public class QuinteCouleur extends AbstractAnalyseurRang {
 	@Override
 	protected boolean reconnaitreMain(ReqAnalyseMain contexte) {
-		Quinte quinte = new Quinte();
-		if (!quinte.reconnaitreMain(contexte))
+		LinkedList<Denomination> quinte = new LinkedList<Denomination>();
+		boolean asPresent = false;
+	
+		Iterator<Carte> it = contexte.getMain().iterator();
+		CouleurCarte couleurPrecedente = null;
+		while (it.hasNext() && quinte.size() < 5) {
+			Carte carte = it.next();
+			
+			if (carte.getDenomination().equals(Denomination.AS))
+				asPresent = true;
+	
+			if (quinte.size() == 0) {
+				quinte.addLast(carte.getDenomination());
+				couleurPrecedente = carte.getCouleur();
+			} else {
+				int precedant = Denomination.DENOMINATIONS.indexOf(quinte.getLast());
+				int courant = Denomination.DENOMINATIONS.indexOf(carte.getDenomination());
+				
+				if ((precedant == courant + 1) && (carte.getCouleur().equals(couleurPrecedente)))  {
+					quinte.addLast(carte.getDenomination());
+					couleurPrecedente = carte.getCouleur();
+				} else {
+					quinte.clear();
+					couleurPrecedente = carte.getCouleur();
+					quinte.addLast(carte.getDenomination());
+				}
+			}
+						
+		}
+	
+		if (quinte.size() == 5
+				|| (quinte.size() == 4 && quinte.getLast().equals(Denomination.DEUX) && asPresent)) {
+			contexte.setRangReconnu(new RangPokerQuinteCouleur(quinte.getFirst()));
+			return true;
+		} else {
 			return false;
-		
-		Couleur couleur = new Couleur();
-		if (!couleur.reconnaitreMain(contexte))
-			return false;
-		
-		contexte.setRangReconnu(new RangPoker(9));
-		return true;
+		}
+
 	}
 }
