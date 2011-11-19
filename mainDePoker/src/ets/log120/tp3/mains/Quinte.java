@@ -3,6 +3,7 @@ package ets.log120.tp3.mains;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.TreeMap;
 
 import ets.log120.tp3.cartes.Carte;
 import ets.log120.tp3.cartes.Denomination;
@@ -19,6 +20,12 @@ import ets.log120.tp3.cartes.Denomination;
 public class Quinte extends AbstractAnalyseurRang {
 	@Override
 	protected boolean reconnaitreMain(ReqAnalyseMain contexte) {
+		TreeMap<Denomination, Integer> map = AnalyseurUtil.compterDenominations(contexte.getMain());
+		Integer nombreJoker = map.remove(Denomination.JOKER);
+		
+		if (nombreJoker == null)
+			nombreJoker = 0;
+		
 		LinkedList<Denomination> quinte = new LinkedList<Denomination>();
 		boolean asPresent = false;
 
@@ -32,9 +39,11 @@ public class Quinte extends AbstractAnalyseurRang {
 			if (quinte.size() == 0) {
 				quinte.addLast(carte.getDenomination());
 			} else {
-				int precedant = Denomination.DENOMINATIONS.indexOf(quinte.getLast());
-				int courant = Denomination.DENOMINATIONS.indexOf(carte.getDenomination());
-				if (precedant == courant + 1) {
+				Denomination denominationPrecedente = quinte.getLast();
+				int valeurPrecedente = Denomination.DENOMINATIONS.indexOf(denominationPrecedente);
+				int valeurCourante = Denomination.DENOMINATIONS.indexOf(carte.getDenomination());
+				
+				if ((valeurPrecedente == valeurCourante  + 1) || (nombreJoker-->=1)) {
 					quinte.addLast(carte.getDenomination());
 				} else {
 					quinte.clear();
