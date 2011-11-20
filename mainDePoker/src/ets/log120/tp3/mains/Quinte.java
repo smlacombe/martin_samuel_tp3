@@ -1,10 +1,7 @@
 package ets.log120.tp3.mains;
 
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.TreeMap;
 
-import ets.log120.tp3.cartes.Carte;
 import ets.log120.tp3.cartes.Denomination;
 
 /**
@@ -21,53 +18,26 @@ public class Quinte extends AbstractAnalyseurRang {
 	@Override
 	protected boolean reconnaitreMain(ReqAnalyseMain contexte) {
 		TreeMap<Denomination, Integer> map = AnalyseurUtil.compterDenominations(contexte.getMain());
-		Integer nombreJoker = map.remove(Denomination.JOKER);
-		Main main = contexte.getMain();//AnalyseurUtil.retirerJoker(contexte.getMain());
 		
-		if (nombreJoker == null)
-			nombreJoker = 0;
-		
-		LinkedList<Denomination> quinte = new LinkedList<Denomination>();
-		boolean asPresent = false;
-
-		Iterator<Carte> it = main.iterator();
-		Denomination dernierNonJoker=null;
-		while (it.hasNext() && quinte.size() < 5) {
-			Carte carte = it.next();
-			Denomination denominationCourante = carte.getDenomination();
-					
-			if (denominationCourante.equals(Denomination.AS))
-				asPresent = true;
-
-			if (quinte.size() == 0) {
-				quinte.addLast(denominationCourante);
-			} else {
-				Denomination denominationPrecedente = quinte.getLast();
-				if (!(denominationCourante.equals(denominationPrecedente)) || denominationCourante.equals(Denomination.JOKER) ) {
-					int valeurPrecedente = Denomination.DENOMINATIONS.indexOf(denominationPrecedente);
-					int valeurCourante = Denomination.DENOMINATIONS.indexOf(denominationCourante);
-									
-					if ((denominationPrecedente.equals(Denomination.JOKER)) || (valeurPrecedente == valeurCourante  + 1) || (nombreJoker-->=1)) {
-						if (!(carte.getDenomination().equals(Denomination.JOKER)))
-							dernierNonJoker = denominationCourante;
-						
-						quinte.addLast(denominationCourante);
-					} else {
-						quinte.clear();
-						quinte.addLast(denominationCourante);
-					}
+		for (int i = Denomination.DENOMINATIONS.indexOf(Denomination.AS); i >= 0; --i) {
+			Integer nombreJoker = map.get(Denomination.JOKER) == null ? 0 : map.get(Denomination.JOKER);
+			
+			for (int j = i; j >= i - 4 && j >= -1; --j) {
+				Integer nombre  = null;
+				if (j == -1)
+					nombre = map.get(Denomination.AS);
+				else
+					nombre = map.get(Denomination.DENOMINATIONS.get(j));
+				
+				if (nombre == null && nombreJoker-- <= 0)
+					break;
+				else if (j == i - 4) {
+					contexte.setRangReconnu(new RangPokerQuinteCouleur(Denomination.DENOMINATIONS.get(i)));
+					return true;
 				}
 			}
 		}
-
-		if (quinte.size() == 5
-				|| (quinte.size() == 4 && quinte.getLast().equals(Denomination.DEUX) && asPresent)) {
-			Denomination meilleure = Denomination.DENOMINATIONS.get(Denomination.DENOMINATIONS.indexOf(dernierNonJoker) + 4);
-			contexte.setRangReconnu(new RangPokerQuinte(meilleure));
-			return true;
-		} 
-		else {
-			return false;
-		}
+		
+		return false;
 	}
 }
