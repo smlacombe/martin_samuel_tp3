@@ -1,10 +1,9 @@
 package ets.log120.tp3.mains;
 
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.TreeMap;
 
-import ets.log120.tp3.cartes.Carte;
 import ets.log120.tp3.cartes.CouleurCarte;
 import ets.log120.tp3.cartes.Denomination;
 
@@ -20,61 +19,40 @@ import ets.log120.tp3.cartes.Denomination;
 public class QuinteCouleur extends AbstractAnalyseurRang {
 	@Override
 	protected boolean reconnaitreMain(ReqAnalyseMain contexte) {
-		TreeMap<Denomination, Integer> map = AnalyseurUtil.compterDenominations(contexte.getMain());
-		Integer nombreJoker = map.remove(Denomination.JOKER);
+		TreeMap<Denomination, Integer> denominations = AnalyseurUtil.compterDenominations(contexte.getMain());
+		TreeMap<CouleurCarte, ? extends Collection<Denomination>> couleurs = AnalyseurUtil.compterCouleurs(contexte.getMain());
 		
-		if (nombreJoker == null)
-			nombreJoker = 0;
-		
-		LinkedList<Denomination> quinte = new LinkedList<Denomination>();
-		boolean asPresent = false;
-	
-		Iterator<Carte> it = contexte.getMain().iterator();
-		CouleurCarte couleurPrecedente = null;
-		Denomination dernierNonJoker = null;
-		
-		while (it.hasNext() && quinte.size() < 5) {
-			Carte carte = it.next();
-			Denomination denominationCourante = carte.getDenomination();
+		for (int i = Denomination.DENOMINATIONS.indexOf(Denomination.AS); i >= 0; --i) {
+			Integer nombreJoker = denominations.get(Denomination.JOKER) == null ? 0 : denominations.get(Denomination.JOKER);
+			ArrayList<CouleurCarte> couleursCommunes = new ArrayList<CouleurCarte>(couleurs.keySet());
 			
-			if (denominationCourante.equals(Denomination.AS))
-				asPresent = true;
-	
-			if (quinte.size() == 0) {
-				quinte.addLast(denominationCourante);
-				couleurPrecedente = carte.getCouleur();
-			} else {
-				Denomination denominationPrecedente = quinte.getLast();
+			for (int j = i; j >= i - 4 && j >= -1; --j) {
+				Denomination denominationCourante = (j == -1) ? Denomination.AS : Denomination.DENOMINATIONS.get(j);
+				Integer nombre = denominations.get(denominationCourante);
 				
-				if (!(denominationCourante.equals(denominationPrecedente)) || denominationCourante.equals(Denomination.JOKER) ) {
-					int precedant = Denomination.DENOMINATIONS.indexOf(quinte.getLast());
-					int courant = Denomination.DENOMINATIONS.indexOf(denominationCourante);
-					
-					if ((denominationPrecedente.equals(Denomination.JOKER)) || (((precedant == courant + 1) && (couleurPrecedente.equals(CouleurCarte.JOKER) || carte.getCouleur().equals(couleurPrecedente)))
-					|| ((nombreJoker-->=1)))) {
-						
-						if (!(carte.getDenomination().equals(Denomination.JOKER)))
-							dernierNonJoker = denominationCourante;
-						
-						quinte.addLast(denominationCourante);
-						couleurPrecedente = carte.getCouleur();
-					} else {
-						quinte.clear();
-						couleurPrecedente = carte.getCouleur();
-						quinte.addLast(denominationCourante);
+				if (nombre == null) {
+					if (nombreJoker-- <= 0)
+						break;
+					else
+						continue;
+				} else {
+					for (int k = 0; k < couleursCommunes.size(); ++k) {
+						CouleurCarte couleur = couleursCommunes.get(k);
+						Collection<Denomination> denominationDeCetteCouleur = couleurs.get(couleur);
+						if (!denominationDeCetteCouleur.contains(denominationCourante)) {
+							couleursCommunes.remove(couleur);
+							--k;
+						}
 					}
 				}
+				
+				if (j == i - 4 && couleursCommunes.size() >= 1) {
+					contexte.setRangReconnu(new RangPokerQuinteCouleur(Denomination.DENOMINATIONS.get(i)));
+					return true;
+				}
 			}
-						
 		}
-	
-		if (quinte.size() == 5
-				|| (quinte.size() == 4 && quinte.getLast().equals(Denomination.DEUX) && asPresent)) {
-			Denomination meilleure = Denomination.DENOMINATIONS.get(Denomination.DENOMINATIONS.indexOf(dernierNonJoker) + 4);
-			contexte.setRangReconnu(new RangPokerQuinteCouleur(meilleure));
-			return true;
-		} else {
-			return false;
-		}
+		
+		return false;
 	}
 }
