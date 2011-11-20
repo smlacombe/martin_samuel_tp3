@@ -49,14 +49,25 @@ public class QuinteRoyaleTest extends TestCase {
 		assertTrue(new QuinteRoyale().reconnaitreMain(new ReqAnalyseMain(main)));
 	}
 	
+	public void testQuinteRoyaleAvecJoker2() {
+		Main main = new Main();
+		main.add(new Carte(Denomination.JOKER,   CouleurCarte.JOKER));
+		main.add(new Carte(Denomination.ROI,  CouleurCarte.COEUR));
+		main.add(new Carte(Denomination.DAME, CouleurCarte.COEUR));
+		main.add(new Carte(Denomination.DIX,  CouleurCarte.COEUR));
+		main.add(new Carte(Denomination.JOKER,CouleurCarte.JOKER));
+		
+		assertTrue(new QuinteRoyale().reconnaitreMain(new ReqAnalyseMain(main)));
+	}
+	
 	public void testQuinteRoyaleAsAvecDoublon() {
 		Main main = new Main();
 		main.add(new Carte(Denomination.AS,  	CouleurCarte.CARREAU));
-		main.add(new Carte(Denomination.DEUX,   CouleurCarte.CARREAU));
-		main.add(new Carte(Denomination.DEUX, 	CouleurCarte.CARREAU));
-		main.add(new Carte(Denomination.TROIS, CouleurCarte.CARREAU));
-		main.add(new Carte(Denomination.QUATRE,  CouleurCarte.CARREAU));
-		main.add(new Carte(Denomination.CINQ,  CouleurCarte.CARREAU));
+		main.add(new Carte(Denomination.ROI,   CouleurCarte.CARREAU));
+		main.add(new Carte(Denomination.ROI, 	CouleurCarte.CARREAU));
+		main.add(new Carte(Denomination.DAME, CouleurCarte.CARREAU));
+		main.add(new Carte(Denomination.VALET,  CouleurCarte.CARREAU));
+		main.add(new Carte(Denomination.DIX,  CouleurCarte.CARREAU));
 		
 		assertTrue(new QuinteRoyale().reconnaitreMain(new ReqAnalyseMain(main)));
 	}
