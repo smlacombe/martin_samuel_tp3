@@ -24,6 +24,25 @@ public class MainTest extends TestCase {
         return new TestSuite(MainTest.class);
     }
 	
+    public void testCompareTo() {
+    	Main mainSuperieure = new Main();
+		mainSuperieure.add(new Carte(Denomination.SIX,   CouleurCarte.CARREAU));
+		mainSuperieure.add(new Carte(Denomination.SEPT,  CouleurCarte.CARREAU));
+		mainSuperieure.add(new Carte(Denomination.HUIT,  CouleurCarte.CARREAU));
+		mainSuperieure.add(new Carte(Denomination.NEUF,  CouleurCarte.CARREAU));
+		mainSuperieure.add(new Carte(Denomination.DIX,   CouleurCarte.CARREAU));
+		
+		Main mainInferieure = new Main();
+		mainInferieure.add(new Carte(Denomination.AS,    CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.DEUX,   CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.TROIS,  CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.QUATRE, CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.CINQ,   CouleurCarte.CARREAU));
+					
+		assertTrue(mainSuperieure.compareTo(mainInferieure) > 0);
+		assertTrue(mainInferieure.compareTo(mainSuperieure) < 0);
+    }
+    
     public void testSize() {
     	Main main = new Main();
         Carte maCarte = new Carte(Denomination.SEPT, CouleurCarte.COEUR);

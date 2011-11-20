@@ -34,7 +34,6 @@ public class RangPokerQuinte extends RangPoker {
     		return resultat;
 
 		RangPokerQuinte other = (RangPokerQuinte) obj;
-
 		return meilleure.compareTo(other.meilleure);
     }
 

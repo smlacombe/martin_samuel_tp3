@@ -10,19 +10,19 @@ import ets.log120.tp3.cartes.Denomination;
  * Une quinte royale est une quinte couleur dont la carte la plus haute est l'as.
  * 
  * @author Martin Desharnais
+ * @author Samuel Milette-Lacombe
  * @see ets.log120.tp3.QuinteCouleur
  */
 public class QuinteRoyale extends AbstractAnalyseurRang {
 	@Override
 	protected boolean reconnaitreMain(ReqAnalyseMain contexte) {
 		QuinteCouleur quinteCouleur = new QuinteCouleur();
-		if (!quinteCouleur.reconnaitreMain(contexte))
-			return false;
-		
-		if (!contexte.getMain().first().getDenomination().equals(Denomination.AS))
-			return false;
-		
-		contexte.setRangReconnu(new RangPoker(12));
-		return true;
+		if ((quinteCouleur.reconnaitreMain(contexte)) &&
+		(contexte.getMain().first().getDenomination().equals(Denomination.AS))) {
+			contexte.setRangReconnu(new RangPoker(11));
+			return true;
+		}
+	
+		return false;
 	}
 }

@@ -31,8 +31,35 @@ public class RangPokerQuinteCouleurTest extends TestCase {
 		
 		RangPoker rangMainSuperieure = requeteMainSuperieure.getRangReconnu();
 		RangPoker rangMainInferieure = requeteMainInferieure.getRangReconnu();
+				
+		assertTrue(rangMainSuperieure.compareTo(rangMainInferieure) > 0);
+		assertTrue(rangMainInferieure.compareTo(rangMainSuperieure) < 0);
+	}
+	
+	public void testComparaisonQuinteAvecJoker()
+	{
+		Main mainSuperieure = new Main();
+		mainSuperieure.add(new Carte(Denomination.SIX,   CouleurCarte.CARREAU));
+		mainSuperieure.add(new Carte(Denomination.SEPT,  CouleurCarte.CARREAU));
+		mainSuperieure.add(new Carte(Denomination.JOKER,  CouleurCarte.JOKER));
+		mainSuperieure.add(new Carte(Denomination.JOKER,  CouleurCarte.JOKER));
+		mainSuperieure.add(new Carte(Denomination.JOKER,   CouleurCarte.JOKER));
 		
-		System.out.println(rangMainSuperieure.compareTo(rangMainInferieure));
+		Main mainInferieure = new Main();
+		mainInferieure.add(new Carte(Denomination.AS,    CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.DEUX,   CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.TROIS,  CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.QUATRE, CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.JOKER,   CouleurCarte.JOKER));
+		
+		ReqAnalyseMain requeteMainSuperieure = new ReqAnalyseMain(mainSuperieure);
+		ReqAnalyseMain requeteMainInferieure = new ReqAnalyseMain(mainInferieure);
+		
+		assertTrue(new QuinteCouleur().reconnaitreMain(requeteMainSuperieure));
+		assertTrue(new QuinteCouleur().reconnaitreMain(requeteMainInferieure));
+		
+		RangPoker rangMainSuperieure = requeteMainSuperieure.getRangReconnu();
+		RangPoker rangMainInferieure = requeteMainInferieure.getRangReconnu();
 		
 		assertTrue(rangMainSuperieure.compareTo(rangMainInferieure) > 0);
 		assertTrue(rangMainInferieure.compareTo(rangMainSuperieure) < 0);
