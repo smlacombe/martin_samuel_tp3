@@ -32,9 +32,13 @@ public abstract class AbstractAnalyseurRang {
 
 	protected abstract boolean reconnaitreMain(ReqAnalyseMain contexte);
 	
-	public void traiterDemande(ReqAnalyseMain contexte) {
-		if (!reconnaitreMain(contexte) && suivant != null)
-			suivant.traiterDemande(contexte);
+	public boolean traiterDemande(ReqAnalyseMain contexte) {
+		if (reconnaitreMain(contexte))
+			return true;
+		else if (suivant != null)
+			return suivant.traiterDemande(contexte);
+		else
+			return false;
 	}
 	
 	public static void setValeursDenominations(TreeMap<Denomination, Integer> valeurs) {
