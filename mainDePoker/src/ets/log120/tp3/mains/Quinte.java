@@ -34,7 +34,7 @@ public class Quinte extends AbstractAnalyseurRang {
 		while (it.hasNext() && quinte.size() < 5) {
 			Carte carte = it.next();
 			Denomination denominationCourante = carte.getDenomination();
-			
+					
 			if (denominationCourante.equals(Denomination.AS))
 				asPresent = true;
 
@@ -42,19 +42,22 @@ public class Quinte extends AbstractAnalyseurRang {
 				quinte.addLast(denominationCourante);
 			} else {
 				Denomination denominationPrecedente = quinte.getLast();
-				int valeurPrecedente = Denomination.DENOMINATIONS.indexOf(denominationPrecedente);
-				int valeurCourante = Denomination.DENOMINATIONS.indexOf(denominationCourante);
-								
-				if ((valeurPrecedente == valeurCourante  + 1) || (nombreJoker-->=1)) {
-					if (!(carte.getDenomination().equals(Denomination.JOKER)))
-						dernierNonJoker = denominationCourante;
-					
-					quinte.addLast(denominationCourante);
-				} else {
-					quinte.clear();
-					quinte.addLast(denominationCourante);
+				if (!(denominationCourante.equals(denominationPrecedente)) || denominationCourante.equals(Denomination.JOKER) ) {
+					int valeurPrecedente = Denomination.DENOMINATIONS.indexOf(denominationPrecedente);
+					int valeurCourante = Denomination.DENOMINATIONS.indexOf(denominationCourante);
+									
+					if ((valeurPrecedente == valeurCourante  + 1) || (nombreJoker-->=1)) {
+						if (!(carte.getDenomination().equals(Denomination.JOKER)))
+							dernierNonJoker = denominationCourante;
+						
+						quinte.addLast(denominationCourante);
+					} else {
+						quinte.clear();
+						quinte.addLast(denominationCourante);
+					}
 				}
 			}
+			
 		}
 
 		if (quinte.size() == 5
