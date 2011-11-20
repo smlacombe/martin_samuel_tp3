@@ -1,8 +1,7 @@
 package ets.log120.tp3.mains;
 
-import java.util.Iterator;
+import java.util.TreeMap;
 
-import ets.log120.tp3.cartes.Carte;
 import ets.log120.tp3.cartes.Denomination;
 
 /**
@@ -17,27 +16,28 @@ import ets.log120.tp3.cartes.Denomination;
 public class QuinteRoyale extends AbstractAnalyseurRang {
 	@Override
 	protected boolean reconnaitreMain(ReqAnalyseMain contexte) {
-		QuinteCouleur quinteCouleur = new QuinteCouleur();
-		boolean rangReconnu = quinteCouleur.reconnaitreMain(contexte);
-		Iterator<Carte> it = contexte.getMain().iterator();
-	
-		Denomination carteAs =  it.next().getDenomination();
-		Denomination carteRoi =  it.next().getDenomination();
-		Denomination carteDame =  it.next().getDenomination();
-		Denomination carteValet =  it.next().getDenomination();
-		Denomination carteDix =  it.next().getDenomination();
-		
-		if ((rangReconnu) &&
-		(carteDix.equals(Denomination.DIX) || carteDix.equals(Denomination.JOKER)) &&
-		(carteValet.equals(Denomination.VALET) || carteValet.equals(Denomination.JOKER)) &&
-		(carteDame.equals(Denomination.DAME) || carteDame.equals(Denomination.JOKER)) &&
-		(carteRoi.equals(Denomination.ROI) || carteRoi.equals(Denomination.JOKER)) &&
-		(carteAs.equals(Denomination.AS) || carteAs.equals(Denomination.JOKER)))
-		{
-			contexte.setRangReconnu(new RangPoker(11));
-			return true;
+		if (!new QuinteCouleur().reconnaitreMain(contexte)) {
+			return false;
+		} else {
+			TreeMap<Denomination, Integer> map = AnalyseurUtil.compterDenominations(contexte.getMain());
+			
+			Integer nombreJoker = map.get(Denomination.JOKER) == null ? 0 : map.get(Denomination.JOKER);
+			Integer nombreAs    = map.get(Denomination.AS)    == null ? 0 : map.get(Denomination.AS);
+			Integer nombreRoi   = map.get(Denomination.ROI)   == null ? 0 : map.get(Denomination.ROI);
+			Integer nombreDame  = map.get(Denomination.DAME)  == null ? 0 : map.get(Denomination.DAME);
+			Integer nombreValet = map.get(Denomination.VALET) == null ? 0 : map.get(Denomination.VALET);
+			Integer nombreDix   = map.get(Denomination.DIX)   == null ? 0 : map.get(Denomination.DIX);
+			
+			if (   (nombreAs    >= 1 || nombreJoker-- >= 1)
+				&& (nombreRoi   >= 1 || nombreJoker-- >= 1)
+				&& (nombreDame  >= 1 || nombreJoker-- >= 1)
+				&& (nombreValet >= 1 || nombreJoker-- >= 1)
+				&& (nombreDix   >= 1 || nombreJoker-- >= 1)) {
+				contexte.setRangReconnu(new RangPoker(11));
+				return true;
+			} else {
+				return false;
+			}
 		}
-	
-		return false;
 	}
 }
