@@ -33,7 +33,7 @@ public abstract class AbstractAnalyseurRang {
 	protected abstract boolean reconnaitreMain(ReqAnalyseMain contexte);
 	
 	public void traiterDemande(ReqAnalyseMain contexte) {
-		if (!reconnaitreMain(contexte))
+		if (!reconnaitreMain(contexte) && suivant != null)
 			suivant.traiterDemande(contexte);
 	}
 	
