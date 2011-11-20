@@ -24,7 +24,162 @@ public class MainTest extends TestCase {
         return new TestSuite(MainTest.class);
     }
 	
-    public void testCompareTo() {
+    public void testCompareToDeuxQuintes() {
+    	Main mainSuperieure = new Main();
+		mainSuperieure.add(new Carte(Denomination.SIX,   CouleurCarte.CARREAU));
+		mainSuperieure.add(new Carte(Denomination.SEPT,  CouleurCarte.CARREAU));
+		mainSuperieure.add(new Carte(Denomination.HUIT,  CouleurCarte.CARREAU));
+		mainSuperieure.add(new Carte(Denomination.NEUF,  CouleurCarte.CARREAU));
+		mainSuperieure.add(new Carte(Denomination.DIX,   CouleurCarte.CARREAU));
+		
+		Main mainInferieure = new Main();
+		mainInferieure.add(new Carte(Denomination.AS,    CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.DEUX,   CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.TROIS,  CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.QUATRE, CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.CINQ,   CouleurCarte.CARREAU));
+					
+		assertTrue(mainSuperieure.compareTo(mainInferieure) > 0);
+		assertTrue(mainInferieure.compareTo(mainSuperieure) < 0);
+    }
+    
+    public void testCompareToQuinteQuinteCouleur() {
+    	Main mainSuperieure = new Main();
+    	mainSuperieure.add(new Carte(Denomination.AS,    CouleurCarte.CARREAU));
+    	mainSuperieure.add(new Carte(Denomination.DEUX,   CouleurCarte.CARREAU));
+    	mainSuperieure.add(new Carte(Denomination.TROIS,  CouleurCarte.CARREAU));
+    	mainSuperieure.add(new Carte(Denomination.QUATRE, CouleurCarte.CARREAU));
+    	mainSuperieure.add(new Carte(Denomination.CINQ,   CouleurCarte.CARREAU));
+		
+		Main mainInferieure = new Main();
+		mainInferieure.add(new Carte(Denomination.AS,    CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.DEUX,   CouleurCarte.TREFLE));
+		mainInferieure.add(new Carte(Denomination.TROIS,  CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.QUATRE, CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.CINQ,   CouleurCarte.CARREAU));
+					
+		assertTrue(mainSuperieure.compareTo(mainInferieure) > 0);
+		assertTrue(mainInferieure.compareTo(mainSuperieure) < 0);
+    }
+    
+    public void testCompareToQuinteRoyaleQuinteCouleur() {
+    	Main mainSuperieure = new Main();
+    	mainSuperieure.add(new Carte(Denomination.AS,    CouleurCarte.CARREAU));
+    	mainSuperieure.add(new Carte(Denomination.ROI,   CouleurCarte.CARREAU));
+    	mainSuperieure.add(new Carte(Denomination.DAME,  CouleurCarte.CARREAU));
+    	mainSuperieure.add(new Carte(Denomination.VALET, CouleurCarte.CARREAU));
+    	mainSuperieure.add(new Carte(Denomination.DIX,   CouleurCarte.CARREAU));
+		
+		Main mainInferieure = new Main();
+		mainInferieure.add(new Carte(Denomination.AS,    CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.DEUX,   CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.TROIS,  CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.QUATRE, CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.CINQ,   CouleurCarte.CARREAU));
+					
+		assertTrue(mainSuperieure.compareTo(mainInferieure) > 0);
+		assertTrue(mainInferieure.compareTo(mainSuperieure) < 0);
+    }
+    
+    public void testCompareToQuintupletQuinteRoyale() {
+    	Main mainSuperieure = new Main();
+    	mainSuperieure.add(new Carte(Denomination.AS,    CouleurCarte.CARREAU));
+    	mainSuperieure.add(new Carte(Denomination.ROI,   CouleurCarte.CARREAU));
+    	mainSuperieure.add(new Carte(Denomination.DAME,  CouleurCarte.CARREAU));
+    	mainSuperieure.add(new Carte(Denomination.VALET, CouleurCarte.CARREAU));
+    	mainSuperieure.add(new Carte(Denomination.DIX,   CouleurCarte.CARREAU));
+		
+		Main mainInferieure = new Main();
+		mainInferieure.add(new Carte(Denomination.AS,    CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.AS,   CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.AS,  CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.AS, CouleurCarte.TREFLE));
+		mainInferieure.add(new Carte(Denomination.JOKER,   CouleurCarte.JOKER));
+		
+		assertTrue(new QuinteRoyale().reconnaitreMain(new ReqAnalyseMain(mainSuperieure)));
+		assertTrue(new Quintuplet().reconnaitreMain(new ReqAnalyseMain(mainInferieure)));
+		
+		assertTrue(mainSuperieure.compareTo(mainInferieure) > 0);
+		assertTrue(mainInferieure.compareTo(mainSuperieure) < 0);
+    }
+    
+    public void testCompareToCarteSuperieurePaire() {
+    	Main mainSuperieure = new Main();
+    	mainSuperieure.add(new Carte(Denomination.AS,    CouleurCarte.CARREAU));
+    	mainSuperieure.add(new Carte(Denomination.AS,   CouleurCarte.CARREAU));
+    	mainSuperieure.add(new Carte(Denomination.DAME,  CouleurCarte.CARREAU));
+    	mainSuperieure.add(new Carte(Denomination.VALET, CouleurCarte.CARREAU));
+    	mainSuperieure.add(new Carte(Denomination.DIX,   CouleurCarte.CARREAU));
+		
+		Main mainInferieure = new Main();
+		mainInferieure.add(new Carte(Denomination.AS,     CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.VALET,   CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.DIX,  CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.NEUF, CouleurCarte.TREFLE));
+		mainInferieure.add(new Carte(Denomination.JOKER,   CouleurCarte.JOKER));
+					
+		assertTrue(mainSuperieure.compareTo(mainInferieure) > 0);
+		assertTrue(mainInferieure.compareTo(mainSuperieure) < 0);
+    }
+    
+    public void testCompareTo3() {
+    	Main mainSuperieure = new Main();
+		mainSuperieure.add(new Carte(Denomination.SIX,   CouleurCarte.CARREAU));
+		mainSuperieure.add(new Carte(Denomination.SEPT,  CouleurCarte.CARREAU));
+		mainSuperieure.add(new Carte(Denomination.HUIT,  CouleurCarte.CARREAU));
+		mainSuperieure.add(new Carte(Denomination.NEUF,  CouleurCarte.CARREAU));
+		mainSuperieure.add(new Carte(Denomination.DIX,   CouleurCarte.CARREAU));
+		
+		Main mainInferieure = new Main();
+		mainInferieure.add(new Carte(Denomination.AS,    CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.DEUX,   CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.TROIS,  CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.QUATRE, CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.CINQ,   CouleurCarte.CARREAU));
+					
+		assertTrue(mainSuperieure.compareTo(mainInferieure) > 0);
+		assertTrue(mainInferieure.compareTo(mainSuperieure) < 0);
+    }
+    
+    public void testCompareTo44() {
+    	Main mainSuperieure = new Main();
+		mainSuperieure.add(new Carte(Denomination.SIX,   CouleurCarte.CARREAU));
+		mainSuperieure.add(new Carte(Denomination.SEPT,  CouleurCarte.CARREAU));
+		mainSuperieure.add(new Carte(Denomination.HUIT,  CouleurCarte.CARREAU));
+		mainSuperieure.add(new Carte(Denomination.NEUF,  CouleurCarte.CARREAU));
+		mainSuperieure.add(new Carte(Denomination.DIX,   CouleurCarte.CARREAU));
+		
+		Main mainInferieure = new Main();
+		mainInferieure.add(new Carte(Denomination.AS,    CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.DEUX,   CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.TROIS,  CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.QUATRE, CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.CINQ,   CouleurCarte.CARREAU));
+					
+		assertTrue(mainSuperieure.compareTo(mainInferieure) > 0);
+		assertTrue(mainInferieure.compareTo(mainSuperieure) < 0);
+    }
+    
+    public void testCompareTo6() {
+    	Main mainSuperieure = new Main();
+		mainSuperieure.add(new Carte(Denomination.SIX,   CouleurCarte.CARREAU));
+		mainSuperieure.add(new Carte(Denomination.SEPT,  CouleurCarte.CARREAU));
+		mainSuperieure.add(new Carte(Denomination.HUIT,  CouleurCarte.CARREAU));
+		mainSuperieure.add(new Carte(Denomination.NEUF,  CouleurCarte.CARREAU));
+		mainSuperieure.add(new Carte(Denomination.DIX,   CouleurCarte.CARREAU));
+		
+		Main mainInferieure = new Main();
+		mainInferieure.add(new Carte(Denomination.AS,    CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.DEUX,   CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.TROIS,  CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.QUATRE, CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.CINQ,   CouleurCarte.CARREAU));
+					
+		assertTrue(mainSuperieure.compareTo(mainInferieure) > 0);
+		assertTrue(mainInferieure.compareTo(mainSuperieure) < 0);
+    }
+    
+    public void testCompareTo8() {
     	Main mainSuperieure = new Main();
 		mainSuperieure.add(new Carte(Denomination.SIX,   CouleurCarte.CARREAU));
 		mainSuperieure.add(new Carte(Denomination.SEPT,  CouleurCarte.CARREAU));
