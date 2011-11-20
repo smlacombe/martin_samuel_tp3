@@ -6,6 +6,13 @@ import ets.log120.tp3.cartes.Denomination;
 import junit.framework.TestCase;
 
 public class CarreTest extends TestCase {
+	public void testMainVide()
+	{
+		Main main = new Main();
+		
+		assertFalse(new Carre().reconnaitreMain(new ReqAnalyseMain(main)));
+	}
+	
 	public void testCarreAs()
 	{
 		Main main = new Main();
@@ -52,5 +59,53 @@ public class CarreTest extends TestCase {
 		main.add(new Carte(Denomination.QUATRE, CouleurCarte.PIQUE));
 		
 		assertFalse(new Carre().reconnaitreMain(new ReqAnalyseMain(main)));
+	}
+	
+	public void testCarreIncompletAvecUnJoker()
+	{
+		Main main = new Main();
+		main.add(Carte.JOKER);
+		main.add(new Carte(Denomination.TROIS,  CouleurCarte.PIQUE));
+		main.add(new Carte(Denomination.TROIS,  CouleurCarte.COEUR));
+		main.add(new Carte(Denomination.TROIS,  CouleurCarte.TREFLE));
+		main.add(new Carte(Denomination.QUATRE, CouleurCarte.PIQUE));
+		
+		assertTrue(new Carre().reconnaitreMain(new ReqAnalyseMain(main)));
+	}
+	
+	public void testCarreIncompletAvecDeuxJokers()
+	{
+		Main main = new Main();
+		main.add(Carte.JOKER);
+		main.add(Carte.JOKER);
+		main.add(new Carte(Denomination.TROIS,  CouleurCarte.COEUR));
+		main.add(new Carte(Denomination.TROIS,  CouleurCarte.TREFLE));
+		main.add(new Carte(Denomination.QUATRE, CouleurCarte.PIQUE));
+		
+		assertTrue(new Carre().reconnaitreMain(new ReqAnalyseMain(main)));
+	}
+	
+	public void testCarreIncompletAvecTroisJokers()
+	{
+		Main main = new Main();
+		main.add(Carte.JOKER);
+		main.add(Carte.JOKER);
+		main.add(Carte.JOKER);
+		main.add(new Carte(Denomination.TROIS,  CouleurCarte.TREFLE));
+		main.add(new Carte(Denomination.QUATRE, CouleurCarte.PIQUE));
+		
+		assertTrue(new Carre().reconnaitreMain(new ReqAnalyseMain(main)));
+	}
+	
+	public void testCarreIncompletAvecQuatreJokers()
+	{
+		Main main = new Main();
+		main.add(Carte.JOKER);
+		main.add(Carte.JOKER);
+		main.add(Carte.JOKER);
+		main.add(Carte.JOKER);
+		main.add(new Carte(Denomination.TROIS,  CouleurCarte.TREFLE));
+		
+		assertTrue(new Carre().reconnaitreMain(new ReqAnalyseMain(main)));
 	}
 }
