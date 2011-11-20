@@ -44,8 +44,20 @@ public class QuinteRoyaleTest extends TestCase {
 		main.add(new Carte(Denomination.ROI,  CouleurCarte.COEUR));
 		main.add(new Carte(Denomination.DAME, CouleurCarte.COEUR));
 		main.add(new Carte(Denomination.DIX,  CouleurCarte.COEUR));
-		main.add(new Carte(Denomination.JOKER,CouleurCarte.COEUR));
+		main.add(new Carte(Denomination.JOKER,CouleurCarte.JOKER));
 		
-		assertTrue(new Quinte().reconnaitreMain(new ReqAnalyseMain(main)));
+		assertTrue(new QuinteRoyale().reconnaitreMain(new ReqAnalyseMain(main)));
+	}
+	
+	public void testQuinteRoyaleAsAvecDoublon() {
+		Main main = new Main();
+		main.add(new Carte(Denomination.AS,  	CouleurCarte.CARREAU));
+		main.add(new Carte(Denomination.DEUX,   CouleurCarte.CARREAU));
+		main.add(new Carte(Denomination.DEUX, 	CouleurCarte.CARREAU));
+		main.add(new Carte(Denomination.TROIS, CouleurCarte.CARREAU));
+		main.add(new Carte(Denomination.QUATRE,  CouleurCarte.CARREAU));
+		main.add(new Carte(Denomination.CINQ,  CouleurCarte.CARREAU));
+		
+		assertTrue(new QuinteRoyale().reconnaitreMain(new ReqAnalyseMain(main)));
 	}
 }

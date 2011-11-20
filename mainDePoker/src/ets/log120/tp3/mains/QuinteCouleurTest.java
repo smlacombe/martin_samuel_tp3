@@ -84,4 +84,16 @@ public class QuinteCouleurTest extends TestCase {
 		
 		assertTrue(new QuinteCouleur().reconnaitreMain(new ReqAnalyseMain(main)));
 	}
+	
+	public void testQuinteCouleurAsAvecDoublon() {
+		Main main = new Main();
+		main.add(new Carte(Denomination.AS,  	CouleurCarte.CARREAU));
+		main.add(new Carte(Denomination.DEUX,   CouleurCarte.CARREAU));
+		main.add(new Carte(Denomination.DEUX, 	CouleurCarte.CARREAU));
+		main.add(new Carte(Denomination.TROIS, CouleurCarte.CARREAU));
+		main.add(new Carte(Denomination.QUATRE,  CouleurCarte.CARREAU));
+		main.add(new Carte(Denomination.CINQ,  CouleurCarte.CARREAU));
+		
+		assertTrue(new QuinteCouleur().reconnaitreMain(new ReqAnalyseMain(main)));
+	}
 }

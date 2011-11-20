@@ -44,21 +44,25 @@ public class QuinteCouleur extends AbstractAnalyseurRang {
 				quinte.addLast(denominationCourante);
 				couleurPrecedente = carte.getCouleur();
 			} else {
-				int precedant = Denomination.DENOMINATIONS.indexOf(quinte.getLast());
-				int courant = Denomination.DENOMINATIONS.indexOf(denominationCourante);
+				Denomination denominationPrecedente = quinte.getLast();
 				
-				if (((precedant == courant + 1) && (couleurPrecedente.equals(CouleurCarte.JOKER) || carte.getCouleur().equals(couleurPrecedente)))
-				|| ((nombreJoker-->=1))) {
+				if (!(denominationCourante.equals(denominationPrecedente)) || denominationCourante.equals(Denomination.JOKER) ) {
+					int precedant = Denomination.DENOMINATIONS.indexOf(quinte.getLast());
+					int courant = Denomination.DENOMINATIONS.indexOf(denominationCourante);
 					
-					if (!(carte.getDenomination().equals(Denomination.JOKER)))
-						dernierNonJoker = denominationCourante;
-					
-					quinte.addLast(denominationCourante);
-					couleurPrecedente = carte.getCouleur();
-				} else {
-					quinte.clear();
-					couleurPrecedente = carte.getCouleur();
-					quinte.addLast(denominationCourante);
+					if (((precedant == courant + 1) && (couleurPrecedente.equals(CouleurCarte.JOKER) || carte.getCouleur().equals(couleurPrecedente)))
+					|| ((nombreJoker-->=1))) {
+						
+						if (!(carte.getDenomination().equals(Denomination.JOKER)))
+							dernierNonJoker = denominationCourante;
+						
+						quinte.addLast(denominationCourante);
+						couleurPrecedente = carte.getCouleur();
+					} else {
+						quinte.clear();
+						couleurPrecedente = carte.getCouleur();
+						quinte.addLast(denominationCourante);
+					}
 				}
 			}
 						
@@ -72,6 +76,5 @@ public class QuinteCouleur extends AbstractAnalyseurRang {
 		} else {
 			return false;
 		}
-
 	}
 }
