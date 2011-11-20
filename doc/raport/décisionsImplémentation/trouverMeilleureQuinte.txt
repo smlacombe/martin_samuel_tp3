@@ -1,0 +1,53 @@
+--------------------------------------------------
+- Écrire une fonction générique pour détecter les quintes
+--------------------------------------------------
+
+Parmi les différents rangs des mains de poker qu'il fallait pouvoir détecter, trois étaient fortement liés : quinte, quinte couleur et quinte royale. La quinte est définie comme une séquence de cinq quartes, la quinte couleur est une quinte dont toutes les cartes sont de la même couleur et la quinte royale est une quinte couleur dont la carte la plus haute est l'as.
+
+Les classes chargés de détecter ces trois rangs devaient donc détecter la même chose, en ajoutant simplement un critère supplémentaire chacun. Ne souhaitant pas dupliquer le code de base nécessaire pour détecter une quinte, nous avons donc cherchés à l'extraire dans une fonction, que nous appellerons « trouverQuinte », qui pourrait être utilisée par les trois classes.
+
+Parmi les possibilités que nous avons explorés, nous avons envisagé que la fonction prenne une main en paramètre et retourne la dénomination de la meilleure carte de la quinte si elle en trouve une et null dans le cas contraire. Il aurait ainsi été facile de détecter une quinte royale, mais totallement impossible de détecter une quinte couleur.
+
+Nous avons aussi envisagé que la fonction retourne un « ArrayList » contenant les cartes de la meilleure quinte. Il serait alors possible de vérifier si la meilleure carte est un as et de vérifier si toutes les cartes sont de même couleur. Le problème est que si une variante du poker où le nombre de carte par main est plus important, il devient possible qu'il y ait deux quintes dans une main. La fonction « trouverQuinte » ne retournant que la meilleur quinte, il est alors impossible de savoir, dans le cas où la première quinte n'est pas une quinte couleur, si la deuxième pourrait fonctionner.
+
+Il pourrait aussi être envisagé de retourne un « ArrayList » contenant toutes les « ArrayList » de quintes trouvés. Cette solution n'est pas très attirante car elle nécessite de toujours parcourir toutes les cartes et d'instancier de nombreux conteneurs.
+
+La solution la plus élégante que nous avons trouvé est de fournir un itérateur, représentant le début de la séquence de cartes à analyser, à la fonction « trouverQuinte ». Celle-ci peut alors chercher une quinte dans cette séquence et, dès qu'elle en trouve une, retourne un itérateur représentant le début de la quinte. Dans le cas où la séquence de cartes ne contient aucune quinte, la fonction « trouverQuinte » retourne simplement « null ».
+
+Le code appelant peut alors verrifier si l'itérateur retourné est « null » pour savoir si il y a une quinte, verrifier si la première carte de la quinte est un as pour savoir si c'est une quinte royale et parcourir la quinte pour savoir si toutes les cartes sont de même dénomination et, donc, s'il s'agit d'une quinte couleur. Jusque là, il n'y a aucun aventage par rapport à la fonction retournant un « ArrayList », mais c'est sans compter le cas où nous cherchon une quinte couleur ou une quinte royale et que celle-ci n'est pas la première de la main.
+
+Puisque nous avons un itérateur pointant sur la première quinte et que nous avons du la traverser pour savoir si toutes les cartes sont de la même couleur, nous pouvons réappeler la fonction « trouverQuinte » en lui passant ce même itérateur : celui-ci pointant après la quinte. La seconde analyse ne parcourera pas toute la main mais seulement la section qui n'avait pas encore été analysé, l'analyse s'étant terminé dès qu'une quinte ait été trouvée.
+
+Pour rendre le tout un peu plus concret, voici le pseudo-code de la fonction « trouverQuinte » :
+
+FONCTION trouverQuinte RECOIT l'itérateur du début de la séquence
+	INITIALISER un conteneur vide représentant la quinte potentielle
+
+	TANT QUE nous n'avons pas atteint la fin ET qu'aucune quinte n'a été trouvée
+		SI la quinte est vide
+			ajouter la carte à la quinte
+			sauvegarder l'itérateur du début de la quinte
+		SINON SI la carte courante suit la dernière carte de la quinte
+			ajouter la carte à la quinte
+		SINON
+			vider la quinte
+			ajouter la carte à la quinte
+			sauvegarder l'itérateur du début de la quinte
+		FIN SI
+		déplacer l'itérateur vers la carte suivante
+	FIN TANT QUE
+
+	SI nous avons trouvé une quinte
+		RETOUR de l'itérateur pointant sur le début de la quinte
+	SINON
+		RETOUR d'un itérateur nul
+	FIN SI
+FIN FONCTION
+
+Cependant, nous avons éprouvé des problèmes au moment d'implémenter cette fonction en java : la copie de l'itérateur qui doit être faite pour retourner le début de la quinte ne l'était pas. En réalité, nous obtenions deux variables pointant sur le même itérateur : déplacer le premier déplacait aussi le second. Il était donc impossible de retourner un itérateur pointant sur la premère carte de la quinte. Nous avons fait plusieurs recherches ,fait de nombreuses tentatives et nous sommes rendu à l'évidence que les itérateurs java n'ont pas été conçus pour ce genre d'utilisation. Des recherches nous ont apprises que si les concepteurs de la bibliothèque standard java ne nous permettent pas d'effectuer des copies d'itérateur, c'est parce qu'il sont incapables d'effectuer cette copie de manière performante.
+
+Nous avons envisagé d'écrire notre propre itérateur copiable, mais nous avons le même problème qu'eux : ce n'est vraiment pas performant. Le temps filant, nous avons laissé ce problème sur la glace et avons prit la méthode simple mais imparfaite de simplement copier le code commun d'une classe à l'autre.
+
+N'aillant pas pu faire fonctionner la fonction, il nous était tout de même impossible d'accuser ouvertement java. En effet, peut-être que c'est nous qui avions fait une erreur. Pour savoir si cette idée aurait du fonctionner, j'ai donc entreprit de l'implémenter dans un autre langage et, en moins de dix minutes, la fonction était fonctionnelle. Le concept est donc bon mais n'est pas dans la « philosophie » java.
+
+PS: le code fonctionnel de la fonction et deux exemples d'utilisation se trouve à la racine du projet sous le nom « trouverMeilleureQuinte.cpp ».
