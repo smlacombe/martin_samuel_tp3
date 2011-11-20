@@ -5,7 +5,6 @@ import junit.framework.TestCase;
 public class AnalyseurRangFactoryTest extends TestCase {
 	public void testMakeAnalyseurRang() {
 		AbstractAnalyseurRang analyseur = AnalyseurRangFactory.makeAnalyseurRang();
-		/*
 		assertTrue(analyseur instanceof QuinteRoyale);
 
 		analyseur = analyseur.getSuivant();
@@ -15,7 +14,6 @@ public class AnalyseurRangFactoryTest extends TestCase {
 		assertTrue(analyseur instanceof QuinteCouleur);
 
 		analyseur = analyseur.getSuivant();
-		*/
 		assertTrue(analyseur instanceof Carre);
 
 		analyseur = analyseur.getSuivant();
