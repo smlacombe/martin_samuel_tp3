@@ -1,10 +1,8 @@
 package ets.log120.tp3.mains;
 
-import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
-import ets.log120.tp3.cartes.Carte;
 import ets.log120.tp3.cartes.Denomination;
 
 /**
