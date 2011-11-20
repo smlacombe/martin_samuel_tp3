@@ -22,6 +22,7 @@ public class Quinte extends AbstractAnalyseurRang {
 	protected boolean reconnaitreMain(ReqAnalyseMain contexte) {
 		TreeMap<Denomination, Integer> map = AnalyseurUtil.compterDenominations(contexte.getMain());
 		Integer nombreJoker = map.remove(Denomination.JOKER);
+		Main main = contexte.getMain();//AnalyseurUtil.retirerJoker(contexte.getMain());
 		
 		if (nombreJoker == null)
 			nombreJoker = 0;
@@ -29,7 +30,7 @@ public class Quinte extends AbstractAnalyseurRang {
 		LinkedList<Denomination> quinte = new LinkedList<Denomination>();
 		boolean asPresent = false;
 
-		Iterator<Carte> it = contexte.getMain().iterator();
+		Iterator<Carte> it = main.iterator();
 		Denomination dernierNonJoker=null;
 		while (it.hasNext() && quinte.size() < 5) {
 			Carte carte = it.next();
@@ -46,7 +47,7 @@ public class Quinte extends AbstractAnalyseurRang {
 					int valeurPrecedente = Denomination.DENOMINATIONS.indexOf(denominationPrecedente);
 					int valeurCourante = Denomination.DENOMINATIONS.indexOf(denominationCourante);
 									
-					if ((valeurPrecedente == valeurCourante  + 1) || (nombreJoker-->=1)) {
+					if ((denominationPrecedente.equals(Denomination.JOKER)) || (valeurPrecedente == valeurCourante  + 1) || (nombreJoker-->=1)) {
 						if (!(carte.getDenomination().equals(Denomination.JOKER)))
 							dernierNonJoker = denominationCourante;
 						
@@ -57,7 +58,6 @@ public class Quinte extends AbstractAnalyseurRang {
 					}
 				}
 			}
-			
 		}
 
 		if (quinte.size() == 5
@@ -65,7 +65,8 @@ public class Quinte extends AbstractAnalyseurRang {
 			Denomination meilleure = Denomination.DENOMINATIONS.get(Denomination.DENOMINATIONS.indexOf(dernierNonJoker) + 4);
 			contexte.setRangReconnu(new RangPokerQuinte(meilleure));
 			return true;
-		} else {
+		} 
+		else {
 			return false;
 		}
 	}

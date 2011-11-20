@@ -50,8 +50,8 @@ public class QuinteCouleur extends AbstractAnalyseurRang {
 					int precedant = Denomination.DENOMINATIONS.indexOf(quinte.getLast());
 					int courant = Denomination.DENOMINATIONS.indexOf(denominationCourante);
 					
-					if (((precedant == courant + 1) && (couleurPrecedente.equals(CouleurCarte.JOKER) || carte.getCouleur().equals(couleurPrecedente)))
-					|| ((nombreJoker-->=1))) {
+					if ((denominationPrecedente.equals(Denomination.JOKER)) || (((precedant == courant + 1) && (couleurPrecedente.equals(CouleurCarte.JOKER) || carte.getCouleur().equals(couleurPrecedente)))
+					|| ((nombreJoker-->=1)))) {
 						
 						if (!(carte.getDenomination().equals(Denomination.JOKER)))
 							dernierNonJoker = denominationCourante;
