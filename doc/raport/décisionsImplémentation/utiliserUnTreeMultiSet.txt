@@ -1,0 +1,17 @@
+--------------------------------------------------
+- Utiliser un multiset pour stocker les cartes dans la main
+--------------------------------------------------
+
+Lorsqu'est venu le temps d'implémenter la main, nous avons eu à choisir sous quelle formes les stocker. Avant de faire un choix, nous avons listé les contraintes que notre solution allait devoir satisfaire : contenir un nombre arbitraire de cartes, permettre de les parcourir à l'aide d'un itérateur, permettre de les trier et permettre les doublons.
+
+Les premiers et second critères éliminent automatiquement l'idée de prendre un simple tableau. Dès lors, il fallait choisir entre les différents conteneurs mis à notre disposition. La première idée émise fut d'utiliser un « ArrayList ». Celui-ci respecte toutes les contraintes proposées mais nécessite d'être trié manuellement à chaque ajout ou supression de données.
+
+Nous nous sommes alors penchés sur la classe « TreeSet » qui respecte presque toutes les contraintes fixées. La seule exception est la nécessité de permettre les doublons. Cependant, cette contrainte est apparue assez tardivement dans le développement, lorsque nous avons voulu stocker plusieurs jokers dans un main. Avant cela, nous souhaitions que chaque carte soit unique, ce nous aurions dû faire manuellement avec un « ArrayList » mais que le « TreeSet » assure automatique. De plus, ce dernier a pour aventage d'aussi assurer automatiquement que les élément sont triés.
+
+Tous ces aventages nous on fait choisir d'utiliser un « TreeSet » pour stocker les cartes pendant la majorité du projet.
+
+Cependant, comme dit précédemment, nous sommes revenus sur nos critères initiaux lorsque nous avons ajoutés la gestion des jokers et avons décidé qu'il fallait permettre que la même carte se retrouve deux fois dans une main. Cette décision permet aussi de gérer des éventuelles variantes du jeux de poker qui nécessiteraient plus d'un jeu de cartes.
+
+Ayant été très satisfaits du « TreeSet » jusqu'alors, nous avons décidés d'utiliser une de ses variantes, le « TreeMultiSet », dont la seule différence est de permettre le dédoublement des données.
+
+Nous avons cependant vite déchantés lorsque, après de nombreuses recherches, nous avons découverts que la biblothèque standard java ne fournit pas ce conteneur. Nous avons donc décidés d'utiliser la bibliothèque « Guava » de Google qui vient fournir, en autres choses, ce conteneur.

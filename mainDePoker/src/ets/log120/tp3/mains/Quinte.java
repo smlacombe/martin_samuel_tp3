@@ -32,7 +32,7 @@ public class Quinte extends AbstractAnalyseurRang {
 				if (nombre == null && nombreJoker-- <= 0)
 					break;
 				else if (j == i - 4) {
-					contexte.setRangReconnu(new RangPokerQuinteCouleur(Denomination.DENOMINATIONS.get(i)));
+					contexte.setRangReconnu(new RangPokerQuinte(Denomination.DENOMINATIONS.get(i)));
 					return true;
 				}
 			}

@@ -12,11 +12,11 @@ public class QuinteTest extends TestCase {
 	public void testPasDeQuinte()
 	{
 		Main main = new Main();
+		main.add(new Carte(Denomination.DEUX,  CouleurCarte.COEUR));
 		main.add(new Carte(Denomination.TROIS, CouleurCarte.CARREAU));
 		main.add(new Carte(Denomination.NEUF,  CouleurCarte.PIQUE));
-		main.add(new Carte(Denomination.AS,    CouleurCarte.TREFLE));
 		main.add(new Carte(Denomination.DAME,  CouleurCarte.COEUR));
-		main.add(new Carte(Denomination.DEUX,  CouleurCarte.COEUR));
+		main.add(new Carte(Denomination.AS,    CouleurCarte.TREFLE));
 		
 		assertFalse(new Quinte().reconnaitreMain(new ReqAnalyseMain(main)));
 	}
@@ -26,10 +26,10 @@ public class QuinteTest extends TestCase {
 	*/
 	public void testQuinteSansAs() {
 		Main main = new Main();
-		main.add(new Carte(Denomination.TROIS,  CouleurCarte.PIQUE));
-		main.add(new Carte(Denomination.CINQ,   CouleurCarte.CARREAU));
-		main.add(new Carte(Denomination.QUATRE, CouleurCarte.TREFLE));
 		main.add(new Carte(Denomination.DEUX,   CouleurCarte.COEUR));
+		main.add(new Carte(Denomination.TROIS,  CouleurCarte.PIQUE));
+		main.add(new Carte(Denomination.QUATRE, CouleurCarte.TREFLE));
+		main.add(new Carte(Denomination.CINQ,   CouleurCarte.CARREAU));
 		main.add(new Carte(Denomination.SIX,    CouleurCarte.CARREAU));
 		
 		assertTrue(new Quinte().reconnaitreMain(new ReqAnalyseMain(main)));
@@ -54,11 +54,11 @@ public class QuinteTest extends TestCase {
 	*/
 	public void testQuinteAvecJoker() {
 		Main main = new Main();
-		main.add(new Carte(Denomination.JOKER,  CouleurCarte.TREFLE));
+		main.add(Carte.JOKER);
+		main.add(Carte.JOKER);
+		main.add(Carte.JOKER);
 		main.add(new Carte(Denomination.CINQ,   CouleurCarte.CARREAU));
 		main.add(new Carte(Denomination.QUATRE, CouleurCarte.CARREAU));
-		main.add(new Carte(Denomination.JOKER,   CouleurCarte.CARREAU));
-		main.add(new Carte(Denomination.JOKER,  CouleurCarte.JOKER));
 		
 		assertTrue(new Quinte().reconnaitreMain(new ReqAnalyseMain(main)));
 	}
@@ -68,11 +68,11 @@ public class QuinteTest extends TestCase {
 	*/
 	public void testQuinteAvecJoker2() {
 		Main main = new Main();
-		main.add(new Carte(Denomination.JOKER,   CouleurCarte.JOKER));
+		main.add(Carte.JOKER);
+		main.add(Carte.JOKER);
 		main.add(new Carte(Denomination.ROI,  CouleurCarte.COEUR));
 		main.add(new Carte(Denomination.DAME, CouleurCarte.TREFLE));
 		main.add(new Carte(Denomination.DIX,  CouleurCarte.COEUR));
-		main.add(new Carte(Denomination.JOKER,CouleurCarte.JOKER));
 		
 		assertTrue(new Quinte().reconnaitreMain(new ReqAnalyseMain(main)));
 	}

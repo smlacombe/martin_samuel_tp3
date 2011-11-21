@@ -45,14 +45,14 @@ public class MainTest extends TestCase {
     
     public void testCompareToQuinteQuinteCouleur() {
     	Main mainSuperieure = new Main();
-    	mainSuperieure.add(new Carte(Denomination.AS,    CouleurCarte.CARREAU));
+    	mainSuperieure.add(new Carte(Denomination.AS,     CouleurCarte.CARREAU));
     	mainSuperieure.add(new Carte(Denomination.DEUX,   CouleurCarte.CARREAU));
     	mainSuperieure.add(new Carte(Denomination.TROIS,  CouleurCarte.CARREAU));
     	mainSuperieure.add(new Carte(Denomination.QUATRE, CouleurCarte.CARREAU));
     	mainSuperieure.add(new Carte(Denomination.CINQ,   CouleurCarte.CARREAU));
 		
 		Main mainInferieure = new Main();
-		mainInferieure.add(new Carte(Denomination.AS,    CouleurCarte.CARREAU));
+		mainInferieure.add(new Carte(Denomination.AS,     CouleurCarte.CARREAU));
 		mainInferieure.add(new Carte(Denomination.DEUX,   CouleurCarte.TREFLE));
 		mainInferieure.add(new Carte(Denomination.TROIS,  CouleurCarte.CARREAU));
 		mainInferieure.add(new Carte(Denomination.QUATRE, CouleurCarte.CARREAU));
