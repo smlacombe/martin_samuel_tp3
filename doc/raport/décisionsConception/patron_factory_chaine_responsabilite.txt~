@@ -1,7 +1,0 @@
-Expliquez le problème rencontré
-La chaîne de responsabilité est définie par la classe abstraite AbstractAnalyseurRang et de ses "handlers" définies par des rang de poker. Pour pouvoir utiliser l'analyseur dans la classe main, il nous fallait pouvoir utiliser un objet non abstrait pour pouvoir travailler avec identifier le rang des mains. Nous avons choisi d'utiliser le patron "factory" défini dans la classe "AnalyseurRangFactory" afin de pouvoir travailler sur un objet prêt à l'utilisation afin d'exécuter la méthode traiterDemande qui permet d'identifier le rang. Cette manière de faire permet de hausser le niveau d'abstraction de l'utilisation de la chaine de responsabilité. L'utilisateur du cadriciel n'a qu'à personnaliser sa suite de rang à analyser dans la classe AnalyseurRangFactory. L'objet "AbstractAnalyseurRang" est alors tout le temps instancié de la manière qu'on le désire peut être utiliser dès son appel. À moins qu'il le veule vraiment, l'utilisateur du cadriciel n'a donc pas à gérer en cours d'exécution les maillons de la chaîne pour l'analyse des rangs.
-
-    Décrivez la solution retenue
-    Discutez des alternatives considérées
-    Discutez des améliorations possibles
-
