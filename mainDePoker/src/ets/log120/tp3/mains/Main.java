@@ -33,7 +33,7 @@ public class Main
 	public RangPoker getRangPoker() {
 		AbstractAnalyseurRang analyseur = AnalyseurRangFactory.makeAnalyseurRang();
 		ReqAnalyseMain requeteMain = new ReqAnalyseMain(this);
-		analyseur.reconnaitreMain(requeteMain);
+		analyseur.traiterDemande(requeteMain);
 		return requeteMain.getRangReconnu();
 	}
 
@@ -68,10 +68,7 @@ public class Main
 
 	@Override
 	public int compareTo(Main obj) {
-		AbstractAnalyseurRang analyseur = AnalyseurRangFactory.makeAnalyseurRang();
-		ReqAnalyseMain requeteMain = new ReqAnalyseMain(obj);
-		analyseur.reconnaitreMain(requeteMain);
-		return getRangPoker().compareTo(requeteMain.getRangReconnu());
+		return getRangPoker().compareTo(obj.getRangPoker());
 	}
 
 	// --------------------------------------------------

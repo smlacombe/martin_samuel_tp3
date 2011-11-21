@@ -42,4 +42,15 @@ public class QuintupletTest extends TestCase {
 		assertFalse(new Quintuplet().reconnaitreMain(new ReqAnalyseMain(main)));
 	}
 	
+	public void testQuintupletAsJoker()
+	{
+		Main main = new Main();
+		main.add(new Carte(Denomination.AS,    CouleurCarte.CARREAU));
+		main.add(new Carte(Denomination.AS,   CouleurCarte.CARREAU));
+		main.add(new Carte(Denomination.AS,  CouleurCarte.CARREAU));
+		main.add(new Carte(Denomination.AS, CouleurCarte.TREFLE));
+		main.add(new Carte(Denomination.JOKER,   CouleurCarte.JOKER));
+		
+		assertTrue(new Quintuplet().reconnaitreMain(new ReqAnalyseMain(main)));
+	}
 }

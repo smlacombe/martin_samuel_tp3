@@ -22,8 +22,8 @@ public class QuinteTest extends TestCase {
 	}
 	
 	/*
-	 * Test avec main qui est une quinte sans AS
-	 */
+	* Test avec main qui est une quinte sans AS
+	*/
 	public void testQuinteSansAs() {
 		Main main = new Main();
 		main.add(new Carte(Denomination.TROIS,  CouleurCarte.PIQUE));
@@ -84,6 +84,28 @@ public class QuinteTest extends TestCase {
 		main.add(new Carte(Denomination.TROIS, 	CouleurCarte.CARREAU));
 		main.add(new Carte(Denomination.QUATRE, CouleurCarte.CARREAU));
 		main.add(new Carte(Denomination.CINQ,  CouleurCarte.TREFLE));
+		
+		assertTrue(new Quinte().reconnaitreMain(new ReqAnalyseMain(main)));
+	}
+	
+	public void testQuinteAsAvecJoker2() {
+		Main main = new Main();
+		main.add(Carte.JOKER);
+		main.add(Carte.JOKER);
+		main.add(Carte.JOKER);
+		main.add(new Carte(Denomination.CINQ,CouleurCarte.CARREAU));
+		main.add(new Carte(Denomination.TROIS,CouleurCarte.CARREAU));
+		
+		assertTrue(new Quinte().reconnaitreMain(new ReqAnalyseMain(main)));
+	}
+	
+	public void testQuinteAsAvecJoker3() {
+		Main main = new Main();
+		main.add(Carte.JOKER);
+		main.add(Carte.JOKER);
+		main.add(Carte.JOKER);
+		main.add(new Carte(Denomination.CINQ,CouleurCarte.CARREAU));
+		main.add(new Carte(Denomination.AS,CouleurCarte.CARREAU));
 		
 		assertTrue(new Quinte().reconnaitreMain(new ReqAnalyseMain(main)));
 	}

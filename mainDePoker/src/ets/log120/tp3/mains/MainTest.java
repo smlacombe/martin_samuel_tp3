@@ -96,8 +96,14 @@ public class MainTest extends TestCase {
 		mainInferieure.add(new Carte(Denomination.AS, CouleurCarte.TREFLE));
 		mainInferieure.add(new Carte(Denomination.JOKER,   CouleurCarte.JOKER));
 		
-		assertTrue(new QuinteRoyale().reconnaitreMain(new ReqAnalyseMain(mainSuperieure)));
-		assertTrue(new Quintuplet().reconnaitreMain(new ReqAnalyseMain(mainInferieure)));
+		ReqAnalyseMain reqSup;
+		ReqAnalyseMain reqInf;
+		
+		assertTrue(new QuinteRoyale().reconnaitreMain(reqSup = new ReqAnalyseMain (mainSuperieure)));
+		assertTrue(new Quintuplet().reconnaitreMain(reqInf = new ReqAnalyseMain (mainInferieure)));
+		
+		System.out.println(reqSup.getMain().getRangPoker().getRang());
+		System.out.println(reqInf.getMain().getRangPoker().getRang());
 		
 		assertTrue(mainSuperieure.compareTo(mainInferieure) > 0);
 		assertTrue(mainInferieure.compareTo(mainSuperieure) < 0);

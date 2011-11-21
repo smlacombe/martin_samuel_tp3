@@ -24,6 +24,51 @@ public class AnalyseurUtil {
 
 		return map;
 	}
+
+	public static Main retirerJoker(Main main) {
+		main.remove(Carte.JOKER);
+		return main;
+	}
+	
+	public static Denomination trouverMeilleureDenominationQuinte(LinkedList<Denomination> quinte, Main main) {
+		TreeMap<Denomination, Integer> map = AnalyseurUtil.compterDenominations(main);
+		Integer nombreJoker = map.remove(Denomination.JOKER);
+				
+		for (int i=0; i< nombreJoker;i++) {
+			quinte.remove(Denomination.JOKER);
+		}
+
+		Iterator<Denomination> it  = quinte.iterator();
+		Denomination denominationPrecedente;
+		Denomination denominationCourante;
+		int valDenominationCourante=0;
+		int valDenominationPrecedente=0;
+		int ecartAvecPrecedent=0;
+		int positionCourante=1;
+		
+		while (it.hasNext() && quinte.size() <= 5) {
+			denominationCourante = it.next();
+			valDenominationCourante = Denomination.DENOMINATIONS.indexOf(denominationCourante);
+		
+			if (!(valDenominationPrecedente==0)) {
+				ecartAvecPrecedent = valDenominationPrecedente - valDenominationCourante;
+				//insérer ecartAvecPrecedent element décroissant
+				for (int i=1; i < ecartAvecPrecedent;i++) {
+					//quinte.add(positionCourante-1, Denomination.DENOMINATIONS.get(valDenominationPrecedente-i));
+					nombreJoker--;
+				}
+			}
+			
+			denominationPrecedente = denominationCourante;
+			valDenominationPrecedente = valDenominationCourante;
+			positionCourante++;
+		}
+		
+		int valMeilleureCarte = Denomination.DENOMINATIONS.indexOf(quinte.getFirst()) + nombreJoker;
+		
+		return Denomination.DENOMINATIONS.get(valMeilleureCarte);
+	}
+	
 	
 	public static Iterator<Carte> trouverMeilleureQuinte(Iterator<Carte> begin1, Iterator<Carte> begin2) {
 		
