@@ -1,0 +1,3 @@
+Une discussion pour expliquer comment l'application des patrons GoF facilite l'extensibilité de votre logiciel.(0.5 à 1 page)
+
+Le jumelage du patron de conception "Factory" et du patron chaîne de responsabilité permet d'augmenter l'extensibilité de notre logiciel. Il permet d'étendre le nombre de rang de poker possible pour le jeu de poker. En créant un nouvel enfant de rang poker et en le plaçant dans la chaîne de responsabilité, l'utilisateur du cadriciel peut inventer de toute pièce des variantes de poker ou d'ajouter des nouvelles variantes qui serait jouées dans le monde.
