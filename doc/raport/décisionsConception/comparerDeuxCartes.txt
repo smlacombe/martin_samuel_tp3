@@ -1,0 +1,17 @@
+--------------------------------------------------
+- Comparer deux cartes entre elles
+--------------------------------------------------
+
+Les spécifications fournies avec l'énoncé de travail indiquaient que les classes « Denomination », « CouleurCarte » et « Carte » devaient toutes trois fournir la méthode « compareTo » et, par conséquent, implémenter l'interface « Comparable ». Seulement, ce n'est pas, selon nous, leur responsabilité de pouvoir se comparer entre elles. En effet, un deux de carreau peut ne pas valoirgrand chose dans un jeu de carte, mais en valoir beaucoup dans un autre.
+
+Le code fournis en exemple utilisait une liste interne pour savoir quelle dénomination, ou couleur, valait plus qu'une autre. La première solution pour permettre à l'utilisateur serait de lui exposer cette liste pour qu'il puisse en modifier l'ordre.
+
+Seulement, nous croyons qu'une dénomination et une couleur de carte ne devraient même pas pouvoir être comparés. Pour être plus précis, cette tâche devrait être laissé à l'utilisateur de la bibliothèque qui décidera, selon le contexte (selon le jeux) quel critère de comparaison utiliser. Pour ce faire, deux solutions sont possibles : déplacer ce code dans une autre classe ou permettre à l'utilisateur de personnaliser les cartes, dénominations et couleurs de cartes.
+
+La première solution pourait être mise en place en délègant cette responsabilité à la classe « main ». En effet, comme il est probable que deux jeux de cartes nécessitent des classes main différentes, celles-ci ont toutes les informations nécessaires pour comparer les différents éléments. Le problème de cette solution est qu'elle apporte un fort couplage entre les carte et la main : celles-ci ne peuvent presque plus être utilisés séparément.
+
+La seconde solution semble plus cohésive, en plus de diminuer le couplage. Il suffit de demander à l'utilisateur comment il souhaite comparer ses cartes. La solution la plus évidente serait de demander un ou des comparateurs dans le constructeur de la classe « Carte », mais cette solution s'avère très verbeuse et peut pratique pour l'utilisateur qui doit toujours fournir les même informations. Il serait aussi possible d'offrir d'exposer un attribut statique qui pourrait n'être défini qu'une seule fois. Seulement, cette solution rend totallement impossible d'utiliser simultanément deux règles de comparaison.
+
+La meilleure solution serait donc de créer une classe « BasicCarte » qui utiliserait des « generics » pour laisser à l'utilisateur la possibilité de définir ses comparateurs. De plus, pour éviter que celui-ci n'ait à le répéter à chaque instanciation, il luis suffirait de définir un « typedef ». Malheureusement, cette notion n'existant pas en java, il faudrait utiliser un peu de ruse en définisant simplement une sous-classe héritant de « BasicCarte » et définissant les types des comparateurs.
+
+Implémenter cette conception s'est avéré assez difficile compte tenu du manque d'expérience avec les « generics » java. De plus amples recherches seraient nécessaire pour savoir ce que l'on peut faire et ce que l'on ne peut pas avec ceux-ci. Pour pouver que le concept est valide, nous l'avons implémenté avec des « templates » en C++ (c.f. comparerDeuxCartes.cpp).
