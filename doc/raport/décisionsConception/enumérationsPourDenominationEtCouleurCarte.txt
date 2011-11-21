@@ -1,0 +1,7 @@
+--------------------------------------------------
+- Utiliser des énumérations pour les dénominations et couleurs de carte
+--------------------------------------------------
+
+Les spécifications fournies avec l'énoncé de travail demandaient d'implémenter les dénominations et couleurs de carte en tant que classes. De plus, les exemples de code fournis nous ont apprit que les constructeurs de celles-ci devraient être privés et que un certain nombre d'instances devraient être publiques sous forme de constantes.
+
+Selon nous, les concepts de dénomination et de couleurs de carte auraient pu être mieux représentés par des énumérations. Celles-ci fonctionne, en java, selon le même principe qu'une classe : elles peuvent avoir des méthodes, des attributs, etc. Seulement, contrairement aux classes, elles fournissent une vérification à la compilation et peuvent être utilisés dans des structure conditionnelles « switch ». De plus, la méthode « toString » est déjà implémenté par défaut pour retourner le nom de la constante.
