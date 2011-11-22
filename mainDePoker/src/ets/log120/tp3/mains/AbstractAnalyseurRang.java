@@ -1,9 +1,5 @@
 package ets.log120.tp3.mains;
 
-import java.util.TreeMap;
-
-import ets.log120.tp3.cartes.Denomination;
-
 public abstract class AbstractAnalyseurRang {
 	
 	// --------------------------------------------------
@@ -41,14 +37,9 @@ public abstract class AbstractAnalyseurRang {
 			return false;
 	}
 	
-	public static void setValeursDenominations(TreeMap<Denomination, Integer> valeurs) {
-		valeursDenominations = valeurs;
-	}
-	
 	// --------------------------------------------------
 	// Attribut(s)
 	// --------------------------------------------------
 	
-	protected static TreeMap<Denomination, Integer> valeursDenominations;
 	private AbstractAnalyseurRang suivant;
 }
