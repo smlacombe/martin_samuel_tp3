@@ -5,6 +5,14 @@ import java.util.TreeMap;
 
 import ets.log120.tp3.cartes.Denomination;
 
+/**
+ * Classe chargée de reconnaitre une paire.
+ * 
+ * Paire : Deux cartes de même dénomination, par exemple, 2 deux, 2 valets, 2 as. 
+ * 
+ * @author Martin Desharnais
+ * @author Samuel Milette-Lacombe
+ */
 public class Paire extends AbstractAnalyseurRang {
 	@Override
 	protected boolean reconnaitreMain(ReqAnalyseMain contexte) {

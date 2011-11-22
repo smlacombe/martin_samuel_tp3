@@ -4,6 +4,13 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Classe représentant une dénomination.
+ * 
+ * C'est la valeur d'une carte, parmi 13 valeurs possibles, p. ex.: deux, trois, ..., dix, valet, dame, roi, as.
+ * 
+ * @author Martin Desharnais
+ */
 public class Denomination
 	implements Comparable<Denomination> {
 
@@ -26,6 +33,9 @@ public class Denomination
 	// Constructeur(s)
 	// --------------------------------------------------
 
+	/**
+	 * Constructeur créant une dénomination à partir de son nom et du caractère la représentant.
+	 */
 	private Denomination(String nom, String caractere) {
 		this.nom = nom;
 		this.caractere = caractere;
@@ -35,10 +45,16 @@ public class Denomination
 	// Accesseur(s)
 	// --------------------------------------------------
 
+	/**
+	 * Retourne le nom de la dénomination.
+	 */
 	public String getNom() {
 		return nom;
 	}
 
+	/**
+	 * Retourne le caractère représentant la dénomination.
+	 */
 	public String caractereSurCarte() {
 		return caractere;
 	}

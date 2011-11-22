@@ -11,6 +11,7 @@ import ets.log120.tp3.cartes.Denomination;
  * Un carré est composé de quatre cartes de même dénomination.
  * 
  * @author Martin Desharnais
+ * @author Samuel Milette-Lacombe
  */
 public class Carre extends AbstractAnalyseurRang {
 	@Override

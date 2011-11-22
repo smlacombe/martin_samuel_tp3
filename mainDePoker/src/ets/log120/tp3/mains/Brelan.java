@@ -11,6 +11,7 @@ import ets.log120.tp3.cartes.Denomination;
  * Un brelan est constitué de trois cartes de même dénomination.
  * 
  * @author Martin Desharnais
+ * @author Samuel Milette-Lacombe
  * @see ets.log120.tp3.Quinte
  */
 public class Brelan extends AbstractAnalyseurRang {

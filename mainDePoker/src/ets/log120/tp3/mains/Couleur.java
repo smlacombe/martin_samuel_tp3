@@ -14,6 +14,7 @@ import ets.log120.tp3.cartes.Denomination;
  * Une couleur est constitué de cinq cartes de même couleur qui ne forment pas de séquence.
  * 
  * @author Martin Desharnais
+ * @author Samuel Milette-Lacombe
  */
 public class Couleur extends AbstractAnalyseurRang {
 	@Override

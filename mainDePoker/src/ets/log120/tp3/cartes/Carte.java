@@ -1,5 +1,9 @@
 package ets.log120.tp3.cartes;
 
+/**
+ * Classe représentant une carte.
+ * @author Martin Desharnais
+ */
 public class Carte
 	implements Comparable<Carte>{
 
@@ -9,6 +13,9 @@ public class Carte
 	// Constructeur(s)
 	// --------------------------------------------------
 
+	/**
+	 * Constructeur créant une carte à partir d'une dénomination et d'une couleur.
+	 */
 	public Carte(Denomination d, CouleurCarte c) {
 		this.denomination = d;
 		this.couleur = c;
@@ -18,10 +25,16 @@ public class Carte
 	// Accesseur(s)
 	// --------------------------------------------------
 
+	/**
+	 * Retourne la couleur de la carte.
+	 */
 	public CouleurCarte getCouleur() {
 		return couleur;
 	}
 	
+	/**
+	 * Retourne la dénomination de la carte.
+	 */
 	public Denomination getDenomination() {
 		return denomination;
 	}
@@ -82,10 +95,6 @@ public class Carte
 		return true;
 	}
 	
-	// --------------------------------------------------
-	// Mutateur(s)
-	// --------------------------------------------------
-
 	// --------------------------------------------------
 	// Attribut(s)
 	// --------------------------------------------------

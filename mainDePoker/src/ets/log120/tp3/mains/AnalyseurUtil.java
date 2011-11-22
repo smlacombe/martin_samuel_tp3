@@ -1,9 +1,6 @@
 package ets.log120.tp3.mains;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
@@ -12,7 +9,7 @@ import ets.log120.tp3.cartes.CouleurCarte;
 import ets.log120.tp3.cartes.Denomination;
 
 public class AnalyseurUtil {
-	
+
 	/**
 	 * Retourne une map, trié par ordre décroissant, de dénominations et du nombre d'occurences de
 	 * celles-ci dans la main reçue en paramètre.
@@ -29,102 +26,23 @@ public class AnalyseurUtil {
 		return map;
 	}
 
-	public static Main retirerJoker(Main main) {
-		main.remove(Carte.JOKER);
-		return main;
-	}
-	
-	public static Denomination trouverMeilleureDenominationQuinte(LinkedList<Denomination> quinte, Main main) {
-		TreeMap<Denomination, Integer> map = AnalyseurUtil.compterDenominations(main);
-		Integer nombreJoker = map.remove(Denomination.JOKER);
-				
-		for (int i=0; i< nombreJoker;i++) {
-			quinte.remove(Denomination.JOKER);
-		}
-
-		Iterator<Denomination> it  = quinte.iterator();
-		Denomination denominationPrecedente;
-		Denomination denominationCourante;
-		int valDenominationCourante=0;
-		int valDenominationPrecedente=0;
-		int ecartAvecPrecedent=0;
-		int positionCourante=1;
-		
-		while (it.hasNext() && quinte.size() <= 5) {
-			denominationCourante = it.next();
-			valDenominationCourante = Denomination.DENOMINATIONS.indexOf(denominationCourante);
-		
-			if (!(valDenominationPrecedente==0)) {
-				ecartAvecPrecedent = valDenominationPrecedente - valDenominationCourante;
-				//insérer ecartAvecPrecedent element décroissant
-				for (int i=1; i < ecartAvecPrecedent;i++) {
-					//quinte.add(positionCourante-1, Denomination.DENOMINATIONS.get(valDenominationPrecedente-i));
-					nombreJoker--;
-				}
-			}
-			
-			denominationPrecedente = denominationCourante;
-			valDenominationPrecedente = valDenominationCourante;
-			positionCourante++;
-		}
-		
-		int valMeilleureCarte = Denomination.DENOMINATIONS.indexOf(quinte.getFirst()) + nombreJoker;
-		
-		return Denomination.DENOMINATIONS.get(valMeilleureCarte);
-	}
-	
-	
+	/**
+	 * Retourne une map, trié par ordre décroissant, de couleurs et de collections de dénominations
+	 * de cette couleur.
+	 */
 	public static TreeMap<CouleurCarte, ? extends Collection<Denomination>> compterCouleurs(Main main) {
 		TreeMap<CouleurCarte, TreeSet<Denomination>> map = new TreeMap<CouleurCarte, TreeSet<Denomination>>();
 
 		for (Carte carte : main) {
 			TreeSet<Denomination> denominations = map.get(carte.getCouleur());
-			
+
 			if (denominations == null)
 				denominations = new TreeSet<Denomination>(new ets.util.functional.Greater<Denomination>());
-			
+
 			denominations.add(carte.getDenomination());
 			map.put(carte.getCouleur(), denominations);
 		}
 
 		return map;
 	}
-	
-	public static Iterator<Carte> trouverMeilleureQuinte(Iterator<Carte> begin1, Iterator<Carte> begin2) {
-		
-		LinkedList<Denomination> quinte = new LinkedList<Denomination>();
-		boolean asPresent = false;
-	
-		Iterator<Carte> it = begin2;
-		Iterator<Carte> itPrecedant = begin1;
-		
-		while (it.hasNext() && quinte.size() < 5) {
-											
-			Carte carte = it.next();
-			
-			if (carte.getDenomination().equals(Denomination.AS))
-				asPresent = true;
-	
-			if (quinte.size() == 0) {
-				quinte.addLast(carte.getDenomination());
-			} else {
-				int precedant = Denomination.DENOMINATIONS.indexOf(quinte.getLast());
-				int courant = Denomination.DENOMINATIONS.indexOf(carte.getDenomination());
-				if (precedant == courant + 1) {
-					quinte.addLast(carte.getDenomination());
-				} else {
-					quinte.clear();
-					begin1 = itPrecedant;
-					quinte.addLast(carte.getDenomination());
-				}
-			}
-		}
-	
-		if (quinte.size() == 5
-				|| (quinte.size() == 4 && quinte.getLast().equals(Denomination.DEUX) && asPresent))
-			return begin2;
-		else			
-			return null;
-	}
 }
-	

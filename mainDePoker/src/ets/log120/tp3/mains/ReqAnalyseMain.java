@@ -1,5 +1,9 @@
 package ets.log120.tp3.mains;
 
+/**
+ * Classe représentant le contexte passé à la chaîne de responsabilités.
+ * @author Martin Desharnais
+ */
 public class ReqAnalyseMain {
 	
 	// --------------------------------------------------
@@ -29,10 +33,6 @@ public class ReqAnalyseMain {
 	public void setRangReconnu(RangPoker rang) {
 		this.rang = rang;
 	}
-	
-	// --------------------------------------------------
-	// Méthodes(s)
-	// --------------------------------------------------
 	
 	// --------------------------------------------------
 	// Attribut(s)

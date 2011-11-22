@@ -9,7 +9,9 @@ import ets.log120.tp3.cartes.Denomination;
  * Classe chargée de reconnaître dans une main, deux paires distinctes
  * 
  * Exemple de deux paires: deux cinq et deux valets.
- * @author Samuel Milette Lacombe
+ * 
+ * @author Martin Desharnais
+ * @author Samuel Milette-Lacombe
  */
 public class DeuxPaires extends AbstractAnalyseurRang {
 	@Override

@@ -14,7 +14,8 @@ import ets.log120.tp3.cartes.Denomination;
 * Dans le cas de deux mains avec deux paires, c'est la paire supérieure qui l'emporte, ou bien la
 * paire inférieure en cas d'égalité pour la paire supérieure. 
 * 
-* @author Samuel Milette-Lacombe
+ * @author Martin Desharnais
+ * @author Samuel Milette-Lacombe
 **/
 public class MainPleine extends AbstractAnalyseurRang {
 	@Override
