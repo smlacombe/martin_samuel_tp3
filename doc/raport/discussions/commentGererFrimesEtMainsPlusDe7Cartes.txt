@@ -1,0 +1,8 @@
+Ce qu'il faudrait changer pour supporter les frimes.
+Notre compréhension de l'énoncé du laboratoire impliquait que nous devions gérer les frimes. C'est ce que nous avons fait. Nous allons expliquer comment nous sommes arrivés à traiter les frimes. Conceptuellement, nous avons représenter la frime comme étant une carte composée d'une dénomination frime et d'une couleur frime. Une carte identifié comme dit précédemment peut facilement être détecté dans les algorithmes de comparaison des rangs. Étant donné que nous utilisons un conteneur "multiset" pour stocker nos cartes, la carte joker allait devoir elle aussi se faire trier. Elle représente donc la plus haute carte du jeu bien qu'elle n'aie pas de valeur définie puisqu'il s'agit de la carte la plus pratique du jeu.
+
+Initialement, nous ne prenions pas en compte les frimes, nous les avons pris en charge seulement en dernier. Il a été nécessaire de modifier une partie non négligeable de notre code pour gérer ces jokers. Tous nos algorithmes de comparaisons des rangs doivent compter le nombre de jokers présents dans la main. Pour cela, nous utilisons la fonction "compterNombreDenominations" qui nous fournie cette information.
+
+Par rapport aux rangx formés par des suites comme la quinte, les modifications que nous avons dû faire s'agissait souvent d'accepter toujours ces cartes dans la suite formée au fur et à mesure du parcours des mains de la cartes. 
+
+Pour ce qui est des rang de type x nombre de dénomination, il s'agissait
