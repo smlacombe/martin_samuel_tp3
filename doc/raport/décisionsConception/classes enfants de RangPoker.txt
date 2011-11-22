@@ -1,16 +1,10 @@
 Implémenter des classes enfants de RangPoker
 
-    -Expliquez le problème rencontré
 Nous devions mettre en place la comparaison des rangs de poker entre eux. Le plus simple des cas de figure était qu'un rang de poker soit comparé à un différent. Il s'agissait là uniquement de faire un tri sur le nombre entier représentant le rang. Cependant, en cas d'égalité sur le rang, il y avait d'autres critères qui entraient jeux comme la carte "kicker". La classe RangPoker à elle seule ne suffisait alors plus selon nous pour traiter la comparaison entre même rang.
-
-    Décrivez la solution retenue
 
 Nous avons décider de représenter chaque rang comme un enfant de la classe RangPoker. Ces classes dérivées peuvent contenir les attributs et la méthode compareTo personnalisée nécessaires à la bonne comparaison des rangs entre eux. Dans la méthode compareTo des classes dérivées, le rang défini dans RangPoker est évalué en premier pour déterminer s'il s'agit d'un même rang.
  Il est à noter que les rang comme Quinte Royale n'ayant pas de critères à évaluer en cas d'égalité, ne sont pas définis par une classe enfant puisque le numéro de rang suffit lors de la comparaison.
 
-    Discutez des alternatives considérées
-Au début, nous utilisions uniquement la classe RangPoker pour comparer les rangs, dès que l'on s'est rendu compte qu'il fallait parfois évaluer d'autres critères en cas d'égalité sur les rangs, nous avions envisager à surcharger le constructeur de RangPoker pour pouvoir traiter plusieurs types de rang mais nous avons rapidement constaté qu'une spécialisation de cette classe était nécessaire, sans quoi, la classe n'était plus cohésive.
+Au début, nous utilisions uniquement la classe RangPoker pour comparer les rangs entre eux. Cette classe contient uniquement un nombre qui identifie le rang. Nous nous sommes alors rendu compte qu'il fallait évaluer d'autres critères que le rang de poker identifié en cas d'égalité sur les rangs. Nous avions envisager un instant à surcharger le constructeur de RangPoker pour pouvoir traiter plusieurs types de rang. Nous aurions eu par exemple un attribut pour chaque critère de comparaison entre rang (i.e. la carte kicker) qui aurait défini au moment de l'appel du constructeur désiré. Cependant, cette conception ne correspondait pas à nos idéaux de conception, nous nous sommes dit qu'une spécialisation de la classe RangPoker était plus appropriée. La spécialisation de rang poker avec le concept d'une classe par rang amène une bonne cohésion au programme. Les types de rangs sont sémantiquement séparés. Cette conception amène aussi à une modularité supplémentaire du programme. Qui dit modularité dit généralement une meilleure possibilité d'extensibilité du logiciel. Nous en reviendrons dans la partie du l'extensibilité de notre logiciel.
 
-La spécialisation de rang poker avec le concept d'une classe par rang amène une bonne cohésion au programme. C'est à dire q
-    Discutez des améliorations possibles
 
